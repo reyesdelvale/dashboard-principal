@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard Principal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-white shadow p-4">
+      <h1 class="text-3xl font-bold">Panel de Control</h1>
+    </header>
+
+    <main class="p-6 space-y-6">
+      <!-- Métricas principales -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded shadow p-4">
+          <h2 class="text-lg font-semibold">Nuevos Leads</h2>
+          <p class="text-2xl font-bold">635</p>
+          <p class="text-green-500">+54.6%</p>
+          <canvas id="leadsChart"></canvas>
+        </div>
+        <div class="bg-white rounded shadow p-4">
+          <h2 class="text-lg font-semibold">Propuestas Enviadas</h2>
+          <canvas id="proposalsChart"></canvas>
+        </div>
+        <div class="bg-white rounded shadow p-4">
+          <h2 class="text-lg font-semibold">Ingresos (6 meses)</h2>
+          <p class="text-2xl font-bold">$56,050</p>
+          <p class="text-green-500">+22.2%</p>
+        </div>
+        <div class="bg-white rounded shadow p-4">
+          <h2 class="text-lg font-semibold">Proyectos Ganados</h2>
+          <p class="text-2xl font-bold">136</p>
+          <p class="text-red-500">-2.5%</p>
+        </div>
+      </section>
+
+      <!-- Gráfico de crecimiento YTD -->
+      <section class="bg-white rounded shadow p-4">
+        <h2 class="text-lg font-semibold mb-2">Crecimiento Ingresos YTD</h2>
+        <canvas id="revenueYTDChart"></canvas>
+        <p class="text-green-600 mt-2">+35% desde el año pasado</p>
+      </section>
+
+      <!-- Leads por fuente -->
+      <section class="bg-white rounded shadow p-4">
+        <h2 class="text-lg font-semibold mb-2">Leads por Fuente</h2>
+        <canvas id="leadsSourceChart"></canvas>
+        <p class="mt-2">Total: 475 leads</p>
+      </section>
+
+      <!-- Comparación ingreso vs metas -->
+      <section class="bg-white rounded shadow p-4">
+        <h2 class="text-lg font-semibold mb-2">Ingreso por Proyecto vs Meta</h2>
+        <canvas id="revenueTargetChart"></canvas>
+        <p class="mt-2 text-gray-600">Promedio de progreso: 78%</p>
+        <p class="text-green-600">2 proyectos por encima del objetivo</p>
+      </section>
+
+      <!-- Embudo de ventas -->
+      <section class="bg-white rounded shadow p-4">
+        <h2 class="text-lg font-semibold mb-2">Embudo de Ventas</h2>
+        <canvas id="pipelineChart"></canvas>
+      </section>
+
+      <!-- Ventas por región -->
+      <section class="bg-white rounded shadow p-4">
+        <h2 class="text-lg font-semibold">Ventas por Región</h2>
+        <p class="text-2xl font-bold">$123,500</p>
+      </section>
+
+      <!-- Acciones -->
+      <section class="bg-white rounded shadow p-4">
+        <h2 class="text-lg font-semibold">Tareas Pendientes</h2>
+        <ul class="list-disc list-inside mt-2 text-gray-700">
+          <li>Contactar a los leads de "Referral"</li>
+          <li>Revisar proyectos por debajo de la meta</li>
+          <li>Actualizar etapas del embudo de ventas</li>
+        </ul>
+      </section>
+    </main>
+
+    <script>
+      // Leads Chart (Bar)
+      new Chart(document.getElementById('leadsChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+          datasets: [{
+            label: 'Leads',
+            data: [120, 150, 180, 185],
+            backgroundColor: '#3b82f6'
+          }]
+        }
+      });
+
+      // Proposals Chart (Line)
+      new Chart(document.getElementById('proposalsChart'), {
+        type: 'line',
+        data: {
+          labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+          datasets: [{
+            label: 'Propuestas',
+            data: [50, 65, 80, 95],
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            fill: true
+          }]
+        }
+      });
+
+      // Revenue YTD Chart (Line)
+      new Chart(document.getElementById('revenueYTDChart'), {
+        type: 'line',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+          datasets: [{
+            label: 'Ingresos',
+            data: [8000, 10000, 12000, 15000, 17000, 19000],
+            borderColor: '#f59e0b',
+            backgroundColor: 'rgba(245, 158, 11, 0.2)',
+            fill: true
+          }]
+        }
+      });
+
+      // Leads by Source (Pie)
+      new Chart(document.getElementById('leadsSourceChart'), {
+        type: 'pie',
+        data: {
+          labels: ['Website', 'Referral', 'Social Media', 'Cold Outreach', 'Other'],
+          datasets: [{
+            data: [170, 105, 90, 62, 48],
+            backgroundColor: ['#3b82f6', '#10b981', '#f97316', '#ef4444', '#6b7280']
+          }]
+        }
+      });
+
+      // Revenue vs Target (Bar)
+      new Chart(document.getElementById('revenueTargetChart'), {
+        type: 'bar',
+        data: {
+          labels: ['MVP', 'Consultoría', 'Framer', 'DevOps', 'LLM', 'Lanzamiento'],
+          datasets: [
+            {
+              label: 'Meta',
+              data: [82000, 48000, 34000, 77000, 68000, 52000],
+              backgroundColor: '#d1d5db'
+            },
+            {
+              label: 'Actual',
+              data: [8000, 17000, 11000, 13000, 12000, 18000],
+              backgroundColor: '#3b82f6'
+            }
+          ]
+        }
+      });
+
+      // Sales Pipeline (Funnel simulation)
+      new Chart(document.getElementById('pipelineChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Descubrimiento', 'Contacto', 'Propuesta', 'Cierre'],
+          datasets: [{
+            label: 'Prospectos',
+            data: [400, 300, 180, 100],
+            backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd']
+          }]
+        },
+        options: {
+          indexAxis: 'y'
+        }
+      });
+    </script>
+  </body>
+</html>
