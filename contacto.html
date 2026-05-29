@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMLIA — Contacto</title>
+<meta name="description" content="Conversemos sobre tu desafío AML. Demo con tus propios datos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page-bg"></div>
+<canvas id="bg-canvas"></canvas>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand" aria-label="AMLIA inicio">
+      <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+        <defs><linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD874"/><stop offset="1" stop-color="#B9831A"/></linearGradient></defs>
+        <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="url(#bm)" stroke-width="2.4"/>
+        <path d="M17 9 L24 13 H10 Z" fill="#FFD874"/>
+        <rect x="11" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="15.8" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="20.6" y="14" width="2.4" height="8" fill="#FFD874"/>
+        <rect x="9.5" y="23" width="15" height="2.4" fill="#FFD874"/>
+      </svg>
+      <span class="brand-name">AML<b>IA</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="servicios.html" class="">Servicios</a>
+      <a href="casos-de-uso.html" class="">Casos de uso</a>
+      <a href="metodologia.html" class="">Metodología</a>
+      <a href="paquetes.html" class="">Paquetes</a>
+      <a href="contacto.html" class="btn btn-gold">Agenda una demo</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<section class="page-hero"><div class="container">
+  <div class="breadcrumb" data-reveal><a href="index.html">Inicio</a> · Contacto</div>
+  <span class="eyebrow" data-reveal><span class="dot"></span>Conversemos</span>
+  <h1 class="display-l" data-reveal style="--d:.06s">Hablemos de tu <span class="gold-t">desafío AML</span></h1>
+  <p class="lead" data-reveal style="--d:.12s">Cuéntanos tu situación y armamos una demo con tus propios datos.</p>
+</div></section>
+<section class="sec" style="padding-top:20px"><div class="container"><div class="grid cols-2" style="align-items:start;gap:40px">
+  <form id="contact-form" class="card" data-reveal style="--d:.04s">
+    <div class="form-row" style="margin-bottom:14px"><input class="field" type="text" name="nombre" placeholder="Nombre" required><input class="field" type="email" name="emailcorporativo" placeholder="Email corporativo" required></div>
+    <input class="field" type="text" name="empresa" placeholder="Empresa / institución" style="margin-bottom:14px">
+    <textarea class="field" name="mensaje" placeholder="Cuéntanos tu desafío AML…" required style="margin-bottom:16px"></textarea>
+    <input type="hidden" name="tiempo">
+    <button class="btn btn-gold" type="submit" style="width:100%;justify-content:center">Enviar mensaje →</button>
+    <p id="form-status" role="status" aria-live="polite" style="margin-top:14px;font-size:14px;min-height:1em"></p>
+  </form>
+  <div data-reveal style="--d:.12s">
+    <div class="card" style="margin-bottom:18px"><h3 style="margin-bottom:14px">Contacto directo</h3>
+      <p style="margin-bottom:14px"><a href="https://wa.me/56957469355" class="link-gold" target="_blank" rel="noopener">WhatsApp · +56 9 5746 9355 <span class="arr">↗</span></a></p>
+      <p style="margin-bottom:14px"><a href="mailto:contacto@amlia.cl" class="link-gold">contacto@amlia.cl <span class="arr">↗</span></a></p>
+      <p><a href="https://amlia.cl" class="link-gold">amlia.cl <span class="arr">↗</span></a></p>
+    </div>
+    <div class="card"><h3 style="margin-bottom:10px">Para entidades financieras</h3>
+      <p style="font-size:14.5px;color:var(--fg-soft)">Trabajamos con bancos, fintech y retail financiero. Si tienes un equipo de datos o de cumplimiento, nos integramos con ellos para potenciar tu prevención de lavado de activos.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><span class="chip">Banca</span><span class="chip">Fintech</span><span class="chip">Retail financiero</span><span class="chip chip-teal">GAFI / FATF</span></div>
+    </div>
+  </div>
+</div></div></section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+            <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="#E8B23A" stroke-width="2.4"/>
+            <path d="M17 9 L24 13 H10 Z" fill="#E8B23A"/><rect x="11" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="15.8" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="20.6" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="9.5" y="23" width="15" height="2.4" fill="#E8B23A"/>
+          </svg>
+          <span class="brand-name">AML<b>IA</b></span>
+        </a>
+        <p style="font-size:14px;color:var(--fg-soft);max-width:34ch">Sistema inteligente de prevención de lavado de activos y financiamiento del terrorismo para entidades financieras.</p>
+      </div>
+      <div><h5>Producto</h5><ul><li><a href="servicios.html">Servicios</a></li><li><a href="casos-de-uso.html">Casos de uso</a></li><li><a href="metodologia.html">Metodología</a></li><li><a href="paquetes.html">Paquetes</a></li></ul></div>
+      <div><h5>Empresa</h5><ul><li><a href="contacto.html">Contacto</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div><h5>Contacto</h5><ul><li><a href="mailto:contacto@amlia.cl">contacto@amlia.cl</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">+56 9 5746 9355</a></li><li><a href="https://amlia.cl">amlia.cl</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2024</span> AMLIA. Todos los derechos reservados.</span>
+      <span>Cumplimiento GAFI / FATF · Solución empresarial</span>
+    </div>
+  </div>
+</footer>
+<a class="wa" href="https://wa.me/56957469355" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3zm4.6-6.2c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg>
+</a>
+<!-- ===================== EMAILJS (envío del formulario) ===================== -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  // ▼▼ Pega aquí tu Public Key (EmailJS → Account → General → Public Key) ▼▼
+  var PUBLIC_KEY  = '2nMwR77avXoq-b3vP';
+  var SERVICE_ID  = 'service_5xqoj56';
+  var TEMPLATE_ID = 'template_d13up47';
+
+  var form = document.getElementById('contact-form');
+  if(!form || !window.emailjs) return;
+  emailjs.init({ publicKey: PUBLIC_KEY });
+
+  var btn      = form.querySelector('button[type="submit"]');
+  var btnLabel = btn ? btn.textContent : 'Enviar mensaje →';
+  var status   = document.getElementById('form-status');
+
+  function setStatus(msg, color){
+    if(!status) return;
+    status.textContent = msg || '';
+    status.style.color = color || 'var(--fg-soft)';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    // marca de tiempo para la variable {{tiempo}} de la plantilla
+    var t = form.querySelector('[name="tiempo"]');
+    if(t) t.value = new Date().toLocaleString('es-CL', { dateStyle:'long', timeStyle:'short' });
+
+    if(btn){ btn.disabled = true; btn.textContent = 'Enviando…'; }
+    setStatus('');
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form)
+      .then(function(){
+        form.reset();
+        if(btn) btn.textContent = '¡Gracias! Te contactaremos pronto ✓';
+        setStatus('Tu mensaje fue enviado correctamente.', 'var(--green)');
+      })
+      .catch(function(err){
+        if(btn){ btn.disabled = false; btn.textContent = btnLabel; }
+        setStatus('No se pudo enviar. Inténtalo de nuevo o escríbenos por WhatsApp.', 'var(--red)');
+        console.error('EmailJS error:', err);
+      });
+  });
+})();
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

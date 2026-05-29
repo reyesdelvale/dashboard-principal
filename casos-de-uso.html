@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMLIA — Casos de uso</title>
+<meta name="description" content="Tipologías de lavado de activos que AMLIA detecta en producción: structuring, layering, TBML, cuentas mula, cripto y fraude interno.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page-bg"></div>
+<canvas id="bg-canvas"></canvas>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand" aria-label="AMLIA inicio">
+      <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+        <defs><linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD874"/><stop offset="1" stop-color="#B9831A"/></linearGradient></defs>
+        <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="url(#bm)" stroke-width="2.4"/>
+        <path d="M17 9 L24 13 H10 Z" fill="#FFD874"/>
+        <rect x="11" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="15.8" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="20.6" y="14" width="2.4" height="8" fill="#FFD874"/>
+        <rect x="9.5" y="23" width="15" height="2.4" fill="#FFD874"/>
+      </svg>
+      <span class="brand-name">AML<b>IA</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="servicios.html" class="">Servicios</a>
+      <a href="casos-de-uso.html" class="active">Casos de uso</a>
+      <a href="metodologia.html" class="">Metodología</a>
+      <a href="paquetes.html" class="">Paquetes</a>
+      <a href="contacto.html" class="btn btn-gold">Agenda una demo</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<section class="page-hero"><div class="container">
+  <div class="breadcrumb" data-reveal><a href="index.html">Inicio</a> · Casos de uso</div>
+  <span class="eyebrow" data-reveal><span class="dot"></span>Casos de uso</span>
+  <h1 class="display-l" data-reveal style="--d:.06s">Aplicaciones concretas en producción</h1>
+  <p class="lead" data-reveal style="--d:.12s">Tipologías de lavado que detectamos con alta precisión, combinando reglas, aprendizaje automático y análisis de grafos relacionales.</p>
+</div></section>
+<section class="sec" style="padding-top:24px"><div class="container"><div class="grid cols-3">
+  <article class="card caso" data-reveal style="--d:0.00s"><span class="chip" style="margin-bottom:14px">Structuring</span><h3>Smurfing</h3><p>Detección de depósitos fraccionados que convergen temporalmente para evadir umbrales de reporte. Identificamos la coordinación entre múltiples cuentas y montos justo por debajo del límite.</p></article>
+  <article class="card caso" data-reveal style="--d:0.05s"><span class="chip" style="margin-bottom:14px">Layering</span><h3>Fan-out / Fan-in</h3><p>Cadenas complejas entre cuentas puente y jurisdicciones de riesgo que dispersan y luego reagrupan fondos. El análisis de grafos revela la estructura oculta de la operación.</p></article>
+  <article class="card caso" data-reveal style="--d:0.10s"><span class="chip" style="margin-bottom:14px">TBML</span><h3>Comercio exterior</h3><p>Sobre y subfacturación, y patrones atípicos en pagos internacionales y operaciones de comercio. Cruzamos precios, volúmenes y contrapartes para detectar anomalías.</p></article>
+  <article class="card caso" data-reveal style="--d:0.15s"><span class="chip" style="margin-bottom:14px">Mulas</span><h3>Cuentas mula</h3><p>Actividad anómala en cuentas nuevas con alta intermediación y rotación rápida de fondos, frecuentemente asociadas a fraude y reclutamiento.</p></article>
+  <article class="card caso" data-reveal style="--d:0.20s"><span class="chip" style="margin-bottom:14px">Cripto</span><h3>On / off-ramp</h3><p>Rampas fiat-cripto no habituales, con KYC reforzado y trazabilidad de origen y destino. Detectamos comportamientos inusuales en la conversión de activos.</p></article>
+  <article class="card caso" data-reveal style="--d:0.25s"><span class="chip" style="margin-bottom:14px">Interno</span><h3>Fraude / colusión</h3><p>Relaciones ocultas y accesos anómalos correlacionados entre personas y operaciones internas, donde el riesgo proviene desde dentro de la institución.</p></article>
+</div></div></section>
+<section class="sec"><div class="container"><div class="cta-band" data-reveal="scale"><div class="halo" aria-hidden="true"></div>
+  <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Conversemos</span>
+  <h2 class="display-l" style="margin:16px 0 14px">Hablemos de tu <span class="gold-t">desafío AML</span></h2>
+  <p class="lead" style="margin:0 auto 30px">Cuéntanos tu situación y armamos una demo con tus propios datos.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a href="contacto.html" class="btn btn-gold">Agenda una demo →</a><a href="https://wa.me/56957469355" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp directo</a></div>
+</div></div></section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+            <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="#E8B23A" stroke-width="2.4"/>
+            <path d="M17 9 L24 13 H10 Z" fill="#E8B23A"/><rect x="11" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="15.8" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="20.6" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="9.5" y="23" width="15" height="2.4" fill="#E8B23A"/>
+          </svg>
+          <span class="brand-name">AML<b>IA</b></span>
+        </a>
+        <p style="font-size:14px;color:var(--fg-soft);max-width:34ch">Sistema inteligente de prevención de lavado de activos y financiamiento del terrorismo para entidades financieras.</p>
+      </div>
+      <div><h5>Producto</h5><ul><li><a href="servicios.html">Servicios</a></li><li><a href="casos-de-uso.html">Casos de uso</a></li><li><a href="metodologia.html">Metodología</a></li><li><a href="paquetes.html">Paquetes</a></li></ul></div>
+      <div><h5>Empresa</h5><ul><li><a href="contacto.html">Contacto</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div><h5>Contacto</h5><ul><li><a href="mailto:contacto@amlia.cl">contacto@amlia.cl</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">+56 9 5746 9355</a></li><li><a href="https://amlia.cl">amlia.cl</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2024</span> AMLIA. Todos los derechos reservados.</span>
+      <span>Cumplimiento GAFI / FATF · Solución empresarial</span>
+    </div>
+  </div>
+</footer>
+<a class="wa" href="https://wa.me/56957469355" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3zm4.6-6.2c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg>
+</a>
+<script src="site.js"></script>
+</body>
+</html>

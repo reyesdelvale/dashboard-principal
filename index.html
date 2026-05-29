@@ -1,466 +1,269 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AMLIA — IA para Prevención de Lavado de Activos (PLA/AML)</title>
-  <meta name="description" content="Capacitaciones, asesorías y desarrollo de modelos de IA para prevenir el lavado de activos. Menos falsos positivos, mayor explicabilidad y cumplimiento GAFI/FATF." />
-  <link rel="icon" href="/favicon.ico" />
-  <style>
-    /* ============  Diseño base  ============ */
-    :root {
-      --bg: #f8fafc;             /* slate-50 */
-      --bg-2: #ffffff;
-      --text: #0f172a;           /* slate-900 */
-      --muted: #64748b;          /* slate-500 */
-      --border: #e2e8f0;         /* slate-200 */
-      --border-dark: #cbd5e1;    /* slate-300 */
-      --primary: #4f46e5;        /* indigo-600 */
-      --primary-50: #eef2ff;     /* indigo-50 */
-      --emerald: #10b981;        /* emerald-500 */
-      --amber-100: #fef3c7;      /* amber-100 */
-      --amber-700: #b45309;      /* amber-700 */
-      --ring: rgba(79, 70, 229, .15);
-      --shadow: 0 10px 25px rgba(2,8,23,.08);
-      --radius: 16px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--text); background: linear-gradient(#f8fafc, #ffffff); }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .btn { display:inline-block; padding: 12px 18px; border-radius: 12px; font-weight: 700; box-shadow: 0 1px 0 rgba(0,0,0,.02); transition: .2s ease; }
-    .btn.primary { background: var(--primary); color: #fff; }
-    .btn.primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
-    .btn.outline { border:1px solid var(--border-dark); color:#0f172a; background: #fff; }
-    .btn.outline:hover { background:#f8fafc; }
-    .badge { display:inline-block; padding: 4px 10px; font-size: 12px; border-radius: 999px; background: var(--primary-50); color:#4338ca; border:1px solid #e0e7ff; }
-    .pill { display:inline-block; font-size:12px; padding:6px 10px; border-radius:999px; background:#fffbeb; color:var(--amber-700); border:1px solid var(--amber-100); }
-    .card { background: var(--bg-2); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .card.pad { padding: 24px; }
-    .muted { color: var(--muted); }
-    .shadow { box-shadow: var(--shadow); }
-
-    /* ============  Header  ============ */
-    .header { position: sticky; top:0; z-index:40; border-bottom:1px solid var(--border); backdrop-filter: blur(10px); background: rgba(255,255,255,.8); }
-    .header .bar { display:flex; align-items:center; justify-content:space-between; padding: 12px 0; }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; }
-    .brand .logo { width:36px; height:36px; border-radius: 12px; background: var(--primary); color:#fff; display:grid; place-items:center; font-weight:800; }
-
-    .nav { display:none; gap: 22px; font-size:14px; color:#334155; }
-    .nav a:hover { color: var(--primary); }
-    .menu-btn { display: inline-flex; border:1px solid var(--border); padding:10px; border-radius:10px; background:#fff; }
-
-    @media (min-width: 640px) { .nav { display:flex; } .menu-btn { display:none; } }
-
-    /* ============  Hero  ============ */
-    .hero { position:relative; overflow:hidden; }
-    .hero .bgfx { position:absolute; inset:0; opacity:.5; background:
-       radial-gradient(600px 600px at 20% 20%, rgba(99,102,241,.12), transparent 40%),
-       radial-gradient(700px 700px at 80% 30%, rgba(16,185,129,.10), transparent 40%);
-       pointer-events:none; z-index:0; }
-    .hero .content { position:relative; z-index:1; display:grid; gap:40px; grid-template-columns: 1fr; padding: 64px 0 80px; }
-    .metrics { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:18px; }
-    .metric { text-align:center; }
-    .metric .value { font-size:28px; font-weight:800; }
-
-    .mock { position:relative; }
-    .mock .glow { position:absolute; inset:-8px; border-radius:24px; background: linear-gradient(45deg, #c7d2fe, #bbf7d0); filter: blur(30px); opacity:.6; }
-
-    .dashboard { position:relative; border-radius:24px; border:1px solid var(--border); background:#fff; padding:16px; }
-    .dashboard .summary { border:1px solid var(--border); border-radius:16px; padding:16px; }
-    .kpis { display:grid; grid-template-columns: repeat(3,1fr); gap:14px; }
-    .kpi { border-radius:12px; background:#f1f5f9; padding:12px; text-align:center; border:1px solid #e2e8f0; }
-    .chart { height:150px; border-radius:12px; background: linear-gradient(120deg, rgba(99,102,241,.15), rgba(16,185,129,.15)); margin-top:14px; }
-    .alerts { list-style:none; padding:0; margin:14px 0 0; }
-    .alerts li { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid var(--border); }
-
-    @media (min-width: 768px) {
-      .hero .content { grid-template-columns: 1.05fr .95fr; align-items:center; }
-    }
-
-    /* ============  Grids & sections  ============ */
-    section { padding: 64px 0; }
-    .grid-4 { display:grid; gap:18px; }
-    .grid-3 { display:grid; gap:18px; }
-    .grid-2 { display:grid; gap:18px; }
-    @media (min-width: 640px){ .grid-2{ grid-template-columns: repeat(2,1fr); } }
-    @media (min-width: 768px){ .grid-3{ grid-template-columns: repeat(3,1fr); } }
-    @media (min-width: 1024px){ .grid-4{ grid-template-columns: repeat(4,1fr); } }
-
-    .feature .ico { width:40px; height:40px; border-radius:12px; background:#eef2ff; color:#4f46e5; display:grid; place-items:center; border:1px solid #e0e7ff; margin-bottom:10px; }
-
-    .list { padding-left: 18px; }
-    .list li { margin: 8px 0; color: var(--muted); }
-
-    .step { text-align:center; }
-    .step .num { width:40px; height:40px; border-radius:999px; background:var(--primary); color:#fff; display:grid; place-items:center; font-weight:800; margin:0 auto 10px; }
-
-    /* ============  FAQ  ============ */
-    details { border:1px solid var(--border); border-radius:12px; padding:14px; background:#fff; }
-    summary { cursor:pointer; font-weight:600; }
-
-    /* ============  Contacto  ============ */
-    .form-grid { display:grid; gap:14px; }
-    @media (min-width: 640px){ .form-grid { grid-template-columns: 1fr 1fr; } }
-    label { font-size: 13px; color:#334155; }
-    input, textarea { width:100%; padding:10px 12px; margin-top:6px; border:1px solid var(--border-dark); border-radius:12px; font: inherit; background:#fff; }
-    input:focus, textarea:focus { outline: none; box-shadow: 0 0 0 4px var(--ring); border-color: var(--primary); }
-
-    /* ============  Footer  ============ */
-    footer { border-top:1px solid var(--border); padding: 28px 0; font-size:14px; color:#475569; }
-    .footer-wrap { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-
-    /* Mobile nav */
-    .mobile-nav { display:none; border-top:1px solid var(--border); padding:10px 0 16px; }
-    .mobile-nav.open { display:block; }
-    .mobile-nav a { display:block; padding:10px 0; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMLIA — Detección de Lavado de Activos con Inteligencia Artificial</title>
+<meta name="description" content="AMLIA ayuda a bancos y fintech a detectar y prevenir el lavado de activos con IA explicable, grafos y aprendizaje automático. Menos falsos positivos, alertas priorizadas, cumplimiento GAFI/FATF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container bar">
-      <a class="brand" href="#home" aria-label="Ir al inicio">
-        <span class="logo">AI</span>
-        <span>AMLIA</span>
-        <span class="muted" style="font-size:12px;margin-left:6px;">amlia.cl</span>
-      </a>
-      <nav class="nav" aria-label="Principal">
-        <a href="#servicios">Servicios</a>
-        <a href="#cursos">Capacitaciones</a>
-        <a href="#casos">Casos de uso</a>
-        <a href="#proceso">Metodología</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contacto" class="btn primary" style="padding:8px 14px;">Contáctanos</a>
-      </nav>
-      <button id="menuBtn" class="menu-btn" aria-label="Abrir menú">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-    <div id="mobileNav" class="container mobile-nav" aria-label="Navegación móvil">
-      <a href="#servicios">Servicios</a>
-      <a href="#cursos">Capacitaciones</a>
-      <a href="#casos">Casos de uso</a>
-      <a href="#proceso">Metodología</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contacto" class="btn primary" style="margin-top:6px;">Contáctanos</a>
-    </div>
-  </header>
+<div class="page-bg"></div>
+<canvas id="bg-canvas"></canvas>
 
-  <main id="home" class="hero">
-    <div aria-hidden="true" class="bgfx"></div>
-    <div class="container content">
-      <section>
-        <span class="badge">Banca • Fintech • Retail financiero</span>
-        <h1 style="font-size: clamp(32px, 5vw, 48px); line-height:1.1; margin: 12px 0 0; font-weight: 900;">
-          Detecta y previene el <span style="background:linear-gradient(90deg,#4f46e5,#0ea5e9,#10b981); -webkit-background-clip:text; background-clip:text; color:transparent;">Lavado de Activos</span> con Inteligencia Artificial
-        </h1>
-        <p class="muted" style="font-size:18px; max-width: 680px; margin-top: 10px;">
-          En <strong>AMLIA</strong> ayudamos a bancos y fintech a reducir falsos positivos, priorizar alertas y cumplir con GAFI/FATF mediante modelos explicables, grafos y aprendizaje automático.
-        </p>
-        <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap;">
-          <a class="btn primary" href="#contacto">Agenda una reunión</a>
-          <a class="btn outline" href="#servicios">Ver servicios</a>
-        </div>
-        <div class="metrics">
-          <div class="metric"><div class="value">-35%</div><div class="muted" style="font-size:14px;">Falsos positivos*</div></div>
-          <div class="metric"><div class="value">+50%</div><div class="muted" style="font-size:14px;">Velocidad en investigación*</div></div>
-          <div class="metric"><div class="value">100%</div><div class="muted" style="font-size:14px;">Modelos explicables (XAI)</div></div>
-        </div>
-        <p class="muted" style="font-size:12px; margin-top:6px;">*Resultados de referencia en proyectos similares; dependerán de tus datos y procesos.</p>
-      </section>
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand" aria-label="AMLIA inicio">
+      <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+        <defs><linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD874"/><stop offset="1" stop-color="#B9831A"/></linearGradient></defs>
+        <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="url(#bm)" stroke-width="2.4"/>
+        <path d="M17 9 L24 13 H10 Z" fill="#FFD874"/>
+        <rect x="11" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="15.8" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="20.6" y="14" width="2.4" height="8" fill="#FFD874"/>
+        <rect x="9.5" y="23" width="15" height="2.4" fill="#FFD874"/>
+      </svg>
+      <span class="brand-name">AML<b>IA</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="servicios.html">Servicios</a>
+      <a href="casos-de-uso.html">Casos de uso</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="paquetes.html">Paquetes</a>
+      <a href="contacto.html" class="btn btn-gold">Agenda una demo</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
 
-      <aside class="mock" aria-label="Tarjeta de ejemplo de monitoreo">
-        <div class="glow" aria-hidden="true"></div>
-        <div class="dashboard card">
-          <div class="summary">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-              <h3 style="font-size:14px; font-weight:700;">Monitoreo transaccional (demo)</h3>
-              <span class="muted" style="font-size:12px;">Tiempo real</span>
-            </div>
-            <div class="kpis">
-              <div class="kpi"><div style="font-weight:800; font-size:22px;">128</div><div class="muted" style="font-size:12px;">Alertas</div></div>
-              <div class="kpi"><div style="font-weight:800; font-size:22px;">19</div><div class="muted" style="font-size:12px;">Alto riesgo</div></div>
-              <div class="kpi"><div style="font-weight:800; font-size:22px;">37</div><div class="muted" style="font-size:12px;">Invest. abiertas</div></div>
-            </div>
-            <div class="chart" role="img" aria-label="Gráfico de líneas decorativo"></div>
-            <ul class="alerts">
-              <li><span>Structuring (Smurfing)</span><span class="pill">riesgo</span></li>
-              <li><span>Layering fan‑out</span><span class="pill">riesgo</span></li>
-              <li><span>Trade‑Based ML</span><span class="pill">riesgo</span></li>
-              <li><span>Mulas de dinero</span><span class="pill">riesgo</span></li>
-            </ul>
-          </div>
+<!-- ===================== HERO (E) ===================== -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-sweep" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-logo" data-reveal="left">
+        <div class="halo" aria-hidden="true"></div>
+        <img src="assets/amlia-logo.png" alt="AMLIA · Sistema Inteligente de Prevención de Lavado de Activos" width="520" height="520" fetchpriority="high">
+      </div>
+      <div class="hero-copy">
+        <span class="eyebrow" data-reveal><span class="dot"></span>Detección AML · en tiempo real</span>
+        <h1 id="hero-title" class="display-xl" data-reveal style="--d:.06s">Detecta el <span class="gold-grad">lavado de activos</span> con IA explicable</h1>
+        <p class="lead" data-reveal style="--d:.12s">Grafos, modelos explicables y MLOps que se integran a tus equipos de datos y cumplimiento. Menos falsos positivos, alertas priorizadas y cumplimiento GAFI/FATF.</p>
+        <div class="hero-cta" data-reveal style="--d:.18s">
+          <a href="metodologia.html" class="btn btn-gold">Ver cómo funciona →</a>
+          <a href="casos-de-uso.html" class="link-gold">Casos de uso <span class="arr">↗</span></a>
         </div>
-      </aside>
-    </div>
-  </main>
-
-  <!-- Beneficios principales -->
-  <section aria-label="Beneficios principales">
-    <div class="container grid-4">
-      <div class="card pad feature">
-        <div class="ico" aria-hidden="true">✓</div>
-        <h3 style="font-weight:700;">Menos falsos positivos</h3>
-        <p class="muted">Prioriza señales fuertes con modelos híbridos (reglas + ML + grafos) y reduce ruido operacional.</p>
-      </div>
-      <div class="card pad feature">
-        <div class="ico" aria-hidden="true">✓</div>
-        <h3 style="font-weight:700;">Explicabilidad (XAI)</h3>
-        <p class="muted">Justifica cada alerta con características de riesgo, subgrafos y contribuciones SHAP.</p>
-      </div>
-      <div class="card pad feature">
-        <div class="ico" aria-hidden="true">✓</div>
-        <h3 style="font-weight:700;">Cumplimiento GAFI/FATF</h3>
-        <p class="muted">Alineamos procesos a las 40 Recomendaciones y normativa local.</p>
-      </div>
-      <div class="card pad feature">
-        <div class="ico" aria-hidden="true">✓</div>
-        <h3 style="font-weight:700;">MLOps para Compliance</h3>
-        <p class="muted">Trazabilidad, auditoría, versionado de datos y modelos para pasar auditorías sin dolor.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Servicios -->
-  <section id="servicios">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:24px;">
-        <h2 style="font-size:28px; font-weight:800;">Servicios</h2>
-        <p class="muted">Capacitaciones, asesorías y desarrollo de modelos de IA para PLA/AML.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card pad">
-          <h3 style="font-size:20px; font-weight:700;">Capacitaciones (in‑company / abiertas)</h3>
-          <ul class="list">
-            <li>Fundamentos de AML con IA y grafos</li>
-            <li>Modelado de riesgo y segmentación</li>
-            <li>MLOps y gobierno de modelos para Compliance</li>
-            <li>Uso de LLMs (RAG) para investigación y reportes</li>
-          </ul>
-        </div>
-        <div class="card pad">
-          <h3 style="font-size:20px; font-weight:700;">Asesorías especializadas</h3>
-          <ul class="list">
-            <li>Diagnóstico de procesos y KPIs (ROS, TAT, FPR)</li>
-            <li>Diseño de reglas + ML + grafos (estrategia híbrida)</li>
-            <li>Mejoras de explicabilidad y reducción de FPs</li>
-            <li>Soporte en auditorías y regulador</li>
-          </ul>
-        </div>
-        <div class="card pad">
-          <h3 style="font-size:20px; font-weight:700;">Desarrollo de modelos de IA</h3>
-          <ul class="list">
-            <li>Anomalías (Isolation Forest/Autoencoders/DBSCAN)</li>
-            <li>Clasificación de alertas y scoring de riesgo</li>
-            <li>Detección relacional con grafos (GNN/Neo4j)</li>
-            <li>Despliegue productivo con monitoreo y drift</li>
-          </ul>
+        <ul class="hero-trust" data-reveal style="--d:.2s" aria-label="Garantías de la plataforma">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M12 3l8 3v5.5c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5V6z"/><path d="M9 12l2 2 4-4"/></svg>Cumplimiento GAFI / FATF</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/></svg>Tus datos, en tu infraestructura</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Decisiones explicables (XAI)</li>
+        </ul>
+        <div class="stats" data-reveal style="--d:.24s">
+          <div class="stat"><div class="num"><span data-count="35" data-pre="−" data-suf="%">−35%</span></div><div class="lbl">Falsos positivos</div></div>
+          <div class="stat"><div class="num"><span data-count="50" data-pre="+" data-suf="%">+50%</span></div><div class="lbl">Velocidad de análisis</div></div>
+          <div class="stat"><div class="num"><span data-count="100" data-suf="%">100%</span></div><div class="lbl">Alertas explicables</div></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  <a class="hero-scroll" href="#servicios" aria-label="Desplázate para ver más">
+    <span class="hero-scroll-mouse" aria-hidden="true"><span class="hero-scroll-wheel"></span></span>
+    <span class="hero-scroll-txt">Explorar</span>
+  </a>
+</section>
 
-  <!-- Capacitaciones -->
-  <section id="cursos">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:24px;">
-        <h2 style="font-size:28px; font-weight:800;">Capacitaciones destacadas</h2>
-        <p class="muted">Programas prácticos orientados a resultados y cumplimiento.</p>
-      </div>
-      <div class="grid-2">
-        <div class="card pad">
-          <h3 style="font-size:18px; font-weight:700;">AML con IA: de reglas a grafos y aprendizaje automático</h3>
-          <ul class="list">
-            <li>Topologías de lavado (structuring, layering, TBML)</li>
-            <li>Features temporales y de comportamiento</li>
-            <li>Modelos explicables y validación</li>
-          </ul>
-        </div>
-        <div class="card pad">
-          <h3 style="font-size:18px; font-weight:700;">MLOps para áreas de Cumplimiento</h3>
-          <ul class="list">
-            <li>Versionado de datos/modelos, auditoría y trazabilidad</li>
-            <li>Monitoreo de performance y drift</li>
-            <li>Preparación para auditorías y regulador</li>
-          </ul>
-        </div>
+<!-- ===================== SERVICIOS ===================== -->
+<section class="sec" id="servicios">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="gold-rule"></div>
+      <h2 class="display-l">Capacitaciones, asesorías y modelos de IA para PLA/AML</h2>
+      <p class="lead">Soluciones integrales que se adaptan a tu institución y a tu regulador — diseñadas para integrarse con tus equipos de ciencia de datos y cumplimiento.</p>
+    </div>
+    <div class="grid cols-4">
+      <article class="card" data-reveal style="--d:.04s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M7 10.5V15c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5v-4.5"/></svg></div>
+        <h3>Capacitaciones in-company</h3>
+        <p>Fundamentos de AML con IA, modelado de riesgo, MLOps y uso de LLMs para investigación, a la medida de tu equipo.</p>
+      </article>
+      <article class="card" data-reveal style="--d:.1s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M7.8 8.4l3 6.4M16.2 8.4l-3 6.4M8 7h8"/></svg></div>
+        <h3>Asesorías especializadas</h3>
+        <p>Diagnóstico de procesos, diseño de estrategia híbrida reglas + ML + grafos y soporte experto en auditorías.</p>
+      </article>
+      <article class="card" data-reveal style="--d:.16s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+        <h3>Modelos de IA</h3>
+        <p>Detección de anomalías, scoring de riesgo, grafos relacionales (GNN / Neo4j) y despliegue en producción.</p>
+      </article>
+      <article class="card" data-reveal style="--d:.22s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.5"/></svg></div>
+        <h3>MLOps &amp; gobierno</h3>
+        <p>Trazabilidad, auditoría, versionado de datos y modelos para pasar auditorías sin fricción.</p>
+      </article>
+    </div>
+    <div style="margin-top:36px" data-reveal><a href="servicios.html" class="link-gold">Ver todos los servicios <span class="arr">↗</span></a></div>
+  </div>
+</section>
+
+<!-- ===================== CASOS DE USO ===================== -->
+<section class="sec" id="casos" style="background:linear-gradient(180deg,transparent,rgba(13,26,58,.4),transparent)">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="gold-rule"></div>
+      <h2 class="display-l">Aplicaciones concretas en producción</h2>
+      <p class="lead">Tipologías de lavado que detectamos con alta precisión, combinando reglas, aprendizaje automático y análisis de grafos.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card caso" data-reveal style="--d:.04s"><span class="chip" style="margin-bottom:14px">Structuring</span><h3>Smurfing</h3><p>Detección de depósitos fraccionados que convergen temporalmente para evadir umbrales de reporte.</p></article>
+      <article class="card caso" data-reveal style="--d:.08s"><span class="chip" style="margin-bottom:14px">Layering</span><h3>Fan-out / Fan-in</h3><p>Cadenas complejas entre cuentas puente y jurisdicciones de riesgo que dispersan y reagrupan fondos.</p></article>
+      <article class="card caso" data-reveal style="--d:.12s"><span class="chip" style="margin-bottom:14px">TBML</span><h3>Comercio exterior</h3><p>Sobre/subfacturación y patrones atípicos en pagos internacionales y operaciones de comercio.</p></article>
+      <article class="card caso" data-reveal style="--d:.16s"><span class="chip" style="margin-bottom:14px">Mulas</span><h3>Cuentas mula</h3><p>Actividad anómala en cuentas nuevas con alta intermediación y rotación rápida de fondos.</p></article>
+      <article class="card caso" data-reveal style="--d:.2s"><span class="chip" style="margin-bottom:14px">Cripto</span><h3>On / off-ramp</h3><p>Rampas fiat-cripto no habituales, con KYC reforzado y trazabilidad de origen y destino.</p></article>
+      <article class="card caso" data-reveal style="--d:.24s"><span class="chip" style="margin-bottom:14px">Interno</span><h3>Fraude / colusión</h3><p>Relaciones ocultas y accesos anómalos correlacionados entre personas y operaciones internas.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METODOLOGÍA ===================== -->
+<section class="sec" id="metodologia">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="gold-rule"></div>
+      <h2 class="display-l">Enfoque iterativo, seguro y auditable</h2>
+      <p class="lead">Cinco etapas para llevar tu proyecto de IA a producción, con foco en explicabilidad y cumplimiento en cada paso.</p>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal style="--d:.04s"><div class="dot">1</div><h4>Descubrimiento</h4><p>Objetivos, datos y KPIs</p></div>
+      <div class="step" data-reveal style="--d:.1s"><div class="dot">2</div><h4>Diseño</h4><p>Arquitectura y features</p></div>
+      <div class="step" data-reveal style="--d:.16s"><div class="dot">3</div><h4>PoC / PoV</h4><p>Validación con datos reales</p></div>
+      <div class="step" data-reveal style="--d:.22s"><div class="dot">4</div><h4>Despliegue</h4><p>Integración core / alertas</p></div>
+      <div class="step" data-reveal style="--d:.28s"><div class="dot">5</div><h4>MLOps</h4><p>Monitoreo y auditoría</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAQUETES ===================== -->
+<section class="sec" id="paquetes" style="background:linear-gradient(180deg,transparent,rgba(13,26,58,.4),transparent)">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="gold-rule"></div>
+      <h2 class="display-l">Paquetes orientativos, ajustados a tu realidad</h2>
+      <p class="lead">Cada propuesta se adapta a tu institución y a tu regulador. Estos valores son una referencia inicial.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card price" data-reveal style="--d:.04s">
+        <div class="tier">Starter</div>
+        <div class="amt">US$ 8k <span>desde</span></div>
+        <div class="desc">Ideal para diagnóstico inicial y hoja de ruta.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Diagnóstico 3–4 semanas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Mapa de datos y brechas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Roadmap y quick wins</li>
+        </ul>
+        <a href="contacto.html" class="btn btn-ghost" style="width:100%;justify-content:center">Solicitar</a>
+      </article>
+      <article class="card price feat" data-reveal style="--d:.1s">
+        <span class="badge-pop">Más popular</span>
+        <div class="tier">Pro</div>
+        <div class="amt">US$ 25k <span>desde</span></div>
+        <div class="desc">PoC supervisado con explicabilidad y reducción de falsos positivos.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>PoC / PoV supervisado</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Explicabilidad XAI</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Plan de reducción de FPs</li>
+        </ul>
+        <a href="contacto.html" class="btn btn-gold" style="width:100%;justify-content:center">Agenda una demo</a>
+      </article>
+      <article class="card price" data-reveal style="--d:.16s">
+        <div class="tier">Enterprise</div>
+        <div class="amt">A medida</div>
+        <div class="desc">Modelos en producción con MLOps y soporte a auditorías.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Modelos en producción</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>MLOps y monitoreo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Soporte a auditorías</li>
+        </ul>
+        <a href="contacto.html" class="btn btn-ghost" style="width:100%;justify-content:center">Conversemos</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec" id="faq">
+  <div class="container" style="max-width:840px">
+    <div class="sec-head" data-reveal style="margin-bottom:40px">
+      <div class="gold-rule"></div>
+      <h2 class="display-l">Preguntas frecuentes</h2>
+    </div>
+    <div data-reveal>
+      <div class="faq"><button class="faq-q">¿Cumplen con GAFI/FATF y la normativa local?<span class="pm"></span></button><div class="faq-a"><div>Sí. Diseñamos procesos y evidencias en línea con las 40 Recomendaciones, ROS, segmentación de riesgo y gobierno de modelos, adaptados a tu regulador local.</div></div></div>
+      <div class="faq"><button class="faq-q">¿Cómo aseguran la explicabilidad?<span class="pm"></span></button><div class="faq-a"><div>Usamos trazas de decisión, SHAP/LIME, subgrafos y reportes técnicos legibles por auditoría interna y por el regulador.</div></div></div>
+      <div class="faq"><button class="faq-q">¿Qué datos necesitan para comenzar?<span class="pm"></span></button><div class="faq-a"><div>Transacciones, clientes, KYC, listas y —si es posible— relaciones como beneficiario final, dispositivos, IP y ubicación.</div></div></div>
+      <div class="faq"><button class="faq-q">¿Cuánto tarda un PoC?<span class="pm"></span></button><div class="faq-a"><div>Típicamente entre 6 y 10 semanas, según la calidad de los datos y el alcance acordado.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA / CONTACTO ===================== -->
+<section class="sec" id="contacto">
+  <div class="container">
+    <div class="cta-band" data-reveal="scale">
+      <div class="halo" aria-hidden="true"></div>
+      <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Conversemos</span>
+      <h2 class="display-l" style="margin:16px 0 14px">Hablemos de tu <span class="gold-t">desafío AML</span></h2>
+      <p class="lead" style="margin:0 auto 30px">Cuéntanos tu situación y armamos una demo con tus propios datos.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="contacto.html" class="btn btn-gold">Agenda una demo →</a>
+        <a href="https://wa.me/56957469355" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp directo</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Casos de uso -->
-  <section id="casos">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:24px;">
-        <h2 style="font-size:28px; font-weight:800;">Casos de uso</h2>
-        <p class="muted">Aplicaciones concretas que resolvemos en producción.</p>
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+            <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="#E8B23A" stroke-width="2.4"/>
+            <path d="M17 9 L24 13 H10 Z" fill="#E8B23A"/><rect x="11" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="15.8" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="20.6" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="9.5" y="23" width="15" height="2.4" fill="#E8B23A"/>
+          </svg>
+          <span class="brand-name">AML<b>IA</b></span>
+        </a>
+        <p style="font-size:14px;color:var(--fg-soft);max-width:34ch">Sistema inteligente de prevención de lavado de activos y financiamiento del terrorismo para entidades financieras.</p>
       </div>
-      <div class="grid-3">
-        <div class="card pad"><h3 style="font-weight:700;">Structuring (Smurfing)</h3><p class="muted">Detección de múltiples depósitos/envíos fraccionados que convergen/divergen temporalmente.</p></div>
-        <div class="card pad"><h3 style="font-weight:700;">Layering Fan‑Out/In</h3><p class="muted">Cadenas/transfers complejas entre cuentas puente y jurisdicciones de riesgo.</p></div>
-        <div class="card pad"><h3 style="font-weight:700;">Trade‑Based Money Laundering</h3><p class="muted">Sobre/subfacturación y patrones atípicos en pagos internacionales.</p></div>
-        <div class="card pad"><h3 style="font-weight:700;">Mulas de dinero</h3><p class="muted">Actividad anómala en cuentas nuevas con alta intermediación.</p></div>
-        <div class="card pad"><h3 style="font-weight:700;">Cripto y rampas fiat</h3><p class="muted">On/off‑ramp no habitual, KYC reforzado y trazabilidad.</p></div>
-        <div class="card pad"><h3 style="font-weight:700;">Fraude interno / colusión</h3><p class="muted">Relaciones ocultas y accesos anómalos correlacionados.</p></div>
-      </div>
+      <div><h5>Producto</h5><ul><li><a href="servicios.html">Servicios</a></li><li><a href="casos-de-uso.html">Casos de uso</a></li><li><a href="metodologia.html">Metodología</a></li><li><a href="paquetes.html">Paquetes</a></li></ul></div>
+      <div><h5>Empresa</h5><ul><li><a href="contacto.html">Contacto</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div><h5>Contacto</h5><ul><li><a href="mailto:contacto@amlia.cl">contacto@amlia.cl</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">+56 9 5746 9355</a></li><li><a href="https://amlia.cl">amlia.cl</a></li></ul></div>
     </div>
-  </section>
-
-  <!-- Metodología -->
-  <section id="proceso">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:24px;">
-        <h2 style="font-size:28px; font-weight:800;">Metodología de trabajo</h2>
-        <p class="muted">Enfoque iterativo, seguro y auditable.</p>
-      </div>
-      <div class="grid-3" style="grid-template-columns: repeat(5, 1fr);">
-        <div class="card pad step"><div class="num">1</div><h4>Descubrimiento</h4><p class="muted" style="font-size:14px;">Objetivos, datos, KPIs y compliance</p></div>
-        <div class="card pad step"><div class="num">2</div><h4>Diseño</h4><p class="muted" style="font-size:14px;">Arquitectura, features y explicabilidad</p></div>
-        <div class="card pad step"><div class="num">3</div><h4>PoC/PoV</h4><p class="muted" style="font-size:14px;">Validación con datos reales y ROI</p></div>
-        <div class="card pad step"><div class="num">4</div><h4>Despliegue</h4><p class="muted" style="font-size:14px;">Integración con core/alertas y SOC</p></div>
-        <div class="card pad step"><div class="num">5</div><h4>MLOps & Gobierno</h4><p class="muted" style="font-size:14px;">Monitoreo, auditoría y mejora continua</p></div>
-      </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2024</span> AMLIA. Todos los derechos reservados.</span>
+      <span>Cumplimiento GAFI / FATF · Solución empresarial</span>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- Paquetes -->
-  <section>
-    <div class="container">
-      <div style="text-align:center; margin-bottom:24px;">
-        <h2 style="font-size:28px; font-weight:800;">Paquetes orientativos</h2>
-        <p class="muted">Ajustamos cada propuesta a tu realidad y regulador.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card pad">
-          <h3 style="font-size:20px; font-weight:700;">Starter</h3>
-          <div style="color:var(--primary); font-weight:800; font-size:22px; margin-top:6px;">Desde US$ 8k</div>
-          <ul class="list"><li>Diagnóstico 3–4 semanas</li><li>Mapa de datos y brechas</li><li>Roadmap y quick wins</li></ul>
-        </div>
-        <div class="card pad">
-          <h3 style="font-size:20px; font-weight:700;">Pro</h3>
-          <div style="color:var(--primary); font-weight:800; font-size:22px; margin-top:6px;">Desde US$ 25k</div>
-          <ul class="list"><li>PoC/PoV supervisado</li><li>Explicabilidad + XAI</li><li>Plan de reducción de FPs</li></ul>
-        </div>
-        <div class="card pad">
-          <h3 style="font-size:20px; font-weight:700;">Enterprise</h3>
-          <div style="color:var(--primary); font-weight:800; font-size:22px; margin-top:6px;">A medida</div>
-          <ul class="list"><li>Modelos en producción</li><li>MLOps y monitoreo</li><li>Soporte a auditorías</li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<a class="wa" href="https://wa.me/56957469355" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3zm4.6-6.2c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg>
+</a>
 
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="container" style="max-width:900px;">
-      <div style="text-align:center; margin-bottom:24px;">
-        <h2 style="font-size:28px; font-weight:800;">Preguntas frecuentes</h2>
-      </div>
-      <div class="grid-1" style="display:grid; gap:12px;">
-        <details><summary>¿Cumplen con GAFI/FATF y la normativa local?</summary><p class="muted">Sí. Diseñamos procesos y evidencias en línea con las 40 Recomendaciones, ROS, segmentación de riesgo y gobierno de modelos.</p></details>
-        <details><summary>¿Cómo aseguran explicabilidad?</summary><p class="muted">Usamos trazas de decisión, SHAP/LIME, subgrafos y reportes técnicos legibles por auditoría.</p></details>
-        <details><summary>¿Qué datos necesitan?</summary><p class="muted">Transacciones, clientes, KYC, listas y—si es posible—relaciones (beneficiario final, dispositivos, IP, ubicación).</p></details>
-        <details><summary>¿Cuánto tarda un PoC?</summary><p class="muted">Típicamente 6–10 semanas, según calidad de datos y alcance.</p></details>
-      </div>
-    </div>
-  </section>
+<template id="__bundler_thumbnail" data-bg-color="#070d1f">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#070d1f"/>
+    <path d="M600 250 L700 285 V370 C700 432 658 478 600 496 C542 478 500 432 500 370 V285 Z" fill="none" stroke="#E8B23A" stroke-width="14"/>
+    <path d="M600 305 L648 332 H552 Z" fill="#FFD874"/>
+    <rect x="556" y="338" width="16" height="56" fill="#FFD874"/><rect x="592" y="338" width="16" height="56" fill="#FFD874"/><rect x="628" y="338" width="16" height="56" fill="#FFD874"/>
+    <rect x="546" y="400" width="108" height="16" fill="#FFD874"/>
+    <text x="600" y="600" text-anchor="middle" font-family="Sora,Arial,sans-serif" font-size="84" font-weight="700" letter-spacing="8" fill="#ffffff">AML<tspan fill="#FFC94D">IA</tspan></text>
+  </svg>
+</template>
 
-  <!-- Contacto -->
-
-
-  <section style="margin: 60px 0; padding: 40px; background: #f4f4f4; text-align: center; border-radius: 12px;">
-    <h2>Contáctanos</h2>
-    <p>Escríbenos por WhatsApp para más información</p>
-    <a href="https://wa.me/56957469355" style="display:inline-block; padding: 12px 25px; background:#25D366; color:white; border-radius: 8px; font-weight: bold; text-decoration:none;" target="_blank">Enviar mensaje</a>
-    </section>
-
-  <section id="contacto" style="padding-bottom: 96px;">
-    <div class="container" style="max-width: 840px;">
-      <div style="text-align:center; margin-bottom:16px;">
-        <h2 style="font-size:28px; font-weight:800;">Conversemos</h2>
-        <p class="muted">Cuéntanos tu desafío y armamos una demo con tus datos.</p>
-      </div>
-      <div class="card pad">
-        <div id="sent" style="display:none; text-align:center;">
-          <div style="margin:0 auto 10px; width:48px; height:48px; border-radius:999px; display:grid; place-items:center; background:#d1fae5; color:#047857; border:1px solid #a7f3d0; font-weight:800;">✓</div>
-          <h3 style="font-size:20px; font-weight:700;">¡Mensaje enviado!</h3>
-          <p class="muted">Te responderemos a la brevedad.</p>
-        </div>
-        <form action="https://formspree.io/f/xqagrwqn" method="POST" id="contactForm" class="form-grid">
-          <div>
-            <label for="nombre">Nombre</label>
-            <input id="nombre" name="nombre" required placeholder="Nombre" />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="correo@empresa.com" />
-          </div>
-          <div style="grid-column: 1/-1;">
-            <label for="empresa">Empresa</label>
-            <input id="empresa" name="empresa" placeholder="Banco/Fintech" />
-          </div>
-          <div style="grid-column: 1/-1;">
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Cuéntanos el contexto, objetivos y plazos"></textarea>
-          </div>
-          <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:space-between;">
-            <div class="muted" style="font-size:14px;">O escríbenos a <a href="mailto:contacto@amlia.cl" style="color:var(--primary); text-decoration: underline;">contacto@amlia.cl</a></div>
-            <button class="btn primary" type="submit">Enviar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container footer-wrap">
-      <div>© <span id="year"></span> AMLIA — amlia.cl. Todos los derechos reservados.</div>
-      <div style="display:flex; gap:12px;">
-        <a href="#faq">Privacidad</a>
-        <a href="#faq">Términos</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- SEO basics (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "AMLIA",
-    "url": "https://amlia.cl",
-    "sameAs": [],
-    "logo": "https://amlia.cl/logo.png",
-    "description": "Servicios de capacitación, asesoría y desarrollo de modelos de IA para la prevención del lavado de activos (PLA/AML).",
-    "areaServed": "CL",
-    "contactPoint": [{ "@type": "ContactPoint", "contactType": "sales", "email": "contacto@amlia.cl" }]
-  }
-  </script>
-
-  <script>
-    // Año dinámico en el footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Menú móvil
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    menuBtn?.addEventListener('click', () => mobileNav.classList.toggle('open'));
-
-    // Formulario de contacto (demo). Reemplaza por tu endpoint de Formspree/Getform o función serverless
-    const form = document.getElementById('contactForm');
-    const sent = document.getElementById('sent');
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      // Ejemplo de envío real (descomenta y cambia el endpoint):
-      // try {
-      //   const fd = new FormData(form);
-      //   const res = await fetch('https://formspree.io/f/XXXXXXXX', { method: 'POST', body: fd });
-      //   if (!res.ok) throw new Error('Error al enviar');
-      // } catch (err) { alert('No se pudo enviar. Intenta de nuevo.'); return; }
-      form.style.display = 'none';
-      sent.style.display = 'block';
-    });
-  </script>
+<script src="site.js"></script>
 </body>
 </html>

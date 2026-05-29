@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMLIA — Paquetes</title>
+<meta name="description" content="Paquetes Starter, Pro y Enterprise de AMLIA, ajustados a tu institución y regulador.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page-bg"></div>
+<canvas id="bg-canvas"></canvas>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand" aria-label="AMLIA inicio">
+      <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+        <defs><linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD874"/><stop offset="1" stop-color="#B9831A"/></linearGradient></defs>
+        <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="url(#bm)" stroke-width="2.4"/>
+        <path d="M17 9 L24 13 H10 Z" fill="#FFD874"/>
+        <rect x="11" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="15.8" y="14" width="2.4" height="8" fill="#FFD874"/><rect x="20.6" y="14" width="2.4" height="8" fill="#FFD874"/>
+        <rect x="9.5" y="23" width="15" height="2.4" fill="#FFD874"/>
+      </svg>
+      <span class="brand-name">AML<b>IA</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="servicios.html" class="">Servicios</a>
+      <a href="casos-de-uso.html" class="">Casos de uso</a>
+      <a href="metodologia.html" class="">Metodología</a>
+      <a href="paquetes.html" class="active">Paquetes</a>
+      <a href="contacto.html" class="btn btn-gold">Agenda una demo</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<section class="page-hero"><div class="container">
+  <div class="breadcrumb" data-reveal><a href="index.html">Inicio</a> · Paquetes</div>
+  <span class="eyebrow" data-reveal><span class="dot"></span>Paquetes</span>
+  <h1 class="display-l" data-reveal style="--d:.06s">Paquetes orientativos, ajustados a tu realidad</h1>
+  <p class="lead" data-reveal style="--d:.12s">Cada propuesta se adapta a tu institución y a tu regulador. Estos valores son una referencia inicial para empezar la conversación.</p>
+</div></section>
+<section class="sec" style="padding-top:24px"><div class="container"><div class="grid cols-3">
+  <article class="card price" data-reveal style="--d:.04s"><div class="tier">Starter</div><div class="amt">US$ 8k <span>desde</span></div><div class="desc">Ideal para diagnóstico inicial y hoja de ruta.</div>
+    <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Diagnóstico 3–4 semanas</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Mapa de datos y brechas</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Roadmap y quick wins</li></ul>
+    <a href="contacto.html" class="btn btn-ghost" style="width:100%;justify-content:center">Solicitar</a></article>
+  <article class="card price feat" data-reveal style="--d:.1s"><span class="badge-pop">Más popular</span><div class="tier">Pro</div><div class="amt">US$ 25k <span>desde</span></div><div class="desc">PoC supervisado con explicabilidad y reducción de falsos positivos.</div>
+    <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>PoC / PoV supervisado</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Explicabilidad XAI</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Plan de reducción de FPs</li></ul>
+    <a href="contacto.html" class="btn btn-gold" style="width:100%;justify-content:center">Agenda una demo</a></article>
+  <article class="card price" data-reveal style="--d:.16s"><div class="tier">Enterprise</div><div class="amt">A medida</div><div class="desc">Modelos en producción con MLOps y soporte a auditorías.</div>
+    <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Modelos en producción</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>MLOps y monitoreo</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Soporte a auditorías</li></ul>
+    <a href="contacto.html" class="btn btn-ghost" style="width:100%;justify-content:center">Conversemos</a></article>
+</div>
+<p style="text-align:center;color:var(--fg-mute);font-size:13.5px;margin-top:28px" data-reveal">Los valores son referenciales y se ajustan según alcance, volumen de datos y nivel de integración requerido.</p>
+</div></section>
+<section class="sec"><div class="container"><div class="cta-band" data-reveal="scale"><div class="halo" aria-hidden="true"></div>
+  <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Conversemos</span>
+  <h2 class="display-l" style="margin:16px 0 14px">Hablemos de tu <span class="gold-t">desafío AML</span></h2>
+  <p class="lead" style="margin:0 auto 30px">Cuéntanos tu situación y armamos una demo con tus propios datos.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a href="contacto.html" class="btn btn-gold">Agenda una demo →</a><a href="https://wa.me/56957469355" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp directo</a></div>
+</div></div></section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 34 38" fill="none" aria-hidden="true">
+            <path d="M17 1.5 L31.5 6.5 V19 C31.5 28.5 25 35 17 37.2 C9 35 2.5 28.5 2.5 19 V6.5 Z" fill="none" stroke="#E8B23A" stroke-width="2.4"/>
+            <path d="M17 9 L24 13 H10 Z" fill="#E8B23A"/><rect x="11" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="15.8" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="20.6" y="14" width="2.4" height="8" fill="#E8B23A"/><rect x="9.5" y="23" width="15" height="2.4" fill="#E8B23A"/>
+          </svg>
+          <span class="brand-name">AML<b>IA</b></span>
+        </a>
+        <p style="font-size:14px;color:var(--fg-soft);max-width:34ch">Sistema inteligente de prevención de lavado de activos y financiamiento del terrorismo para entidades financieras.</p>
+      </div>
+      <div><h5>Producto</h5><ul><li><a href="servicios.html">Servicios</a></li><li><a href="casos-de-uso.html">Casos de uso</a></li><li><a href="metodologia.html">Metodología</a></li><li><a href="paquetes.html">Paquetes</a></li></ul></div>
+      <div><h5>Empresa</h5><ul><li><a href="contacto.html">Contacto</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div><h5>Contacto</h5><ul><li><a href="mailto:contacto@amlia.cl">contacto@amlia.cl</a></li><li><a href="https://wa.me/56957469355" target="_blank" rel="noopener">+56 9 5746 9355</a></li><li><a href="https://amlia.cl">amlia.cl</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2024</span> AMLIA. Todos los derechos reservados.</span>
+      <span>Cumplimiento GAFI / FATF · Solución empresarial</span>
+    </div>
+  </div>
+</footer>
+<a class="wa" href="https://wa.me/56957469355" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3zm4.6-6.2c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg>
+</a>
+<script src="site.js"></script>
+</body>
+</html>
