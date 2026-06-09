@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POC Detección AML — AMLIA × Banco BICE</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:    #C8961E;
+    --gold2:   #E8B84B;
+    --gold3:   #6B4E0A;
+    --bg:      #070A0D;
+    --bg2:     #0D1117;
+    --bg3:     #131920;
+    --white:   #FFFFFF;
+    --offwh:   #EDE0C8;
+    --grey:    #8A9BB0;
+    --lgrey:   #1A2535;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--offwh);
+    overflow-x: hidden;
+  }
+
+  /* ── SLIDE CONTAINER ──────────────────────────────────── */
+  .slides {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 4rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    background: var(--bg);
+  }
+  .slide.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── GOLD LINE ────────────────────────────────────────── */
+  .gold-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2), transparent);
+    margin: 1rem 0;
+  }
+  .gold-line-short {
+    width: 80px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0.8rem 0 1.4rem;
+  }
+
+  /* ── PARTICLE BG ──────────────────────────────────────── */
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float linear infinite;
+    opacity: 0;
+  }
+  @keyframes float {
+    0%   { opacity: 0; transform: translateY(0) scale(1); }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { opacity: 0; transform: translateY(-120vh) scale(0.5); }
+  }
+
+  /* ── SLIDE CONTENT BASE ───────────────────────────────── */
+  .slide-inner { position: relative; z-index: 2; max-width: 1200px; width: 100%; margin: 0 auto; }
+
+  /* ── TYPOGRAPHY ───────────────────────────────────────── */
+  .slide-num {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h1.display {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--white);
+  }
+  h1.display em { color: var(--gold); font-style: normal; }
+  h2.slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--grey);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-top: 0.4rem;
+  }
+  .body-text {
+    font-size: 1.05rem;
+    color: var(--offwh);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  /* ── BULLET LIST ──────────────────────────────────────── */
+  .bullet-list { list-style: none; margin-top: 0.5rem; }
+  .bullet-list li {
+    padding: 0.6rem 0 0.6rem 1.8rem;
+    position: relative;
+    font-size: 1.02rem;
+    color: var(--offwh);
+    line-height: 1.55;
+    border-bottom: 1px solid #1A2535;
+  }
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.05rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .bullet-list li strong { color: var(--gold2); }
+
+  /* ── CARDS ────────────────────────────────────────────── */
+  .card-grid { display: grid; gap: 1rem; margin-top: 1rem; }
+  .card-grid-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--gold3);
+    border-top: 3px solid var(--gold);
+    padding: 1.2rem 1.4rem;
+    position: relative;
+  }
+  .card-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .card-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--grey);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+
+  /* ── COVER SLIDE ──────────────────────────────────────── */
+  #s1 {
+    background: radial-gradient(ellipse at 60% 40%, #1A1000 0%, #070A0D 60%);
+  }
+  .cover-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .cover-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .feat-item {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #1a2030;
+  }
+  .feat-icon {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--gold);
+  }
+  .feat-text strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--gold2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.15rem;
+  }
+  .feat-text span { font-size: 0.82rem; color: var(--grey); }
+
+  .tagline {
+    margin-top: 2rem;
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(90deg, #1A0F00, transparent);
+    border-left: 3px solid var(--gold);
+    font-size: 0.9rem;
+    color: var(--offwh);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .amlia-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+  .amlia-logo em { color: var(--gold); font-style: normal; }
+
+  /* ── HIGHLIGHT BOX ────────────────────────────────────── */
+  .highlight-box {
+    border-left: 3px solid var(--gold);
+    background: linear-gradient(90deg, #1A0F00, var(--bg2));
+    padding: 1rem 1.4rem;
+    margin: 0.6rem 0;
+  }
+  .highlight-box .q { font-weight: 600; color: var(--gold2); margin-bottom: 0.4rem; font-size: 1rem; }
+  .highlight-box .a { color: var(--offwh); font-size: 0.97rem; line-height: 1.65; }
+
+  /* ── TABLE ────────────────────────────────────────────── */
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+  .data-table th {
+    background: var(--gold3);
+    color: var(--gold2);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .data-table td {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+    color: var(--offwh);
+    border-bottom: 1px solid var(--lgrey);
+  }
+  .data-table tr:nth-child(even) td { background: #0D1220; }
+  .data-table tr:hover td { background: #141E30; }
+  .data-table td.num { font-weight: 600; color: var(--gold2); }
+  .data-table td.bold { font-weight: 700; color: var(--white); }
+
+  /* ── TWO-COL LAYOUT ───────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+  .col-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── ARCH DIAGRAM ─────────────────────────────────────── */
+  .arch-box {
+    border: 1px solid var(--gold3);
+    background: var(--bg2);
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    color: var(--offwh);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.3rem 0;
+  }
+  .arch-box .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+  .arch-arrow { text-align: center; color: var(--gold); font-size: 1.2rem; margin: 0.1rem 0; }
+
+  /* ── CRITERIA GRID ────────────────────────────────────── */
+  .crit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 0.8rem; }
+  .crit-item {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    background: var(--bg2); border: 1px solid var(--gold3);
+    padding: 0.8rem 1rem; border-left: 3px solid var(--gold);
+  }
+  .crit-name { font-weight: 600; color: var(--gold2); font-size: 0.9rem; }
+  .crit-desc { font-size: 0.83rem; color: var(--grey); margin-top: 0.1rem; }
+
+  /* ── NAVIGATION ───────────────────────────────────────── */
+  .nav {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    z-index: 100;
+    background: rgba(7,10,13,0.85);
+    border: 1px solid var(--gold3);
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(10px);
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid var(--gold3);
+    color: var(--gold);
+    width: 36px; height: 36px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-btn:hover { background: var(--gold3); }
+  .nav-counter { font-size: 0.8rem; color: var(--grey); padding: 0 0.5rem; min-width: 60px; text-align: center; }
+  .nav-dots { display: flex; gap: 4px; }
+  .nav-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold3); cursor: pointer; transition: background 0.2s;
+  }
+  .nav-dot.active { background: var(--gold); }
+
+  /* ── SECTION DIVIDER SLIDE ────────────────────────────── */
+  .divider-slide {
+    background: radial-gradient(ellipse at center, #1A0F00 0%, var(--bg) 70%);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .divider-slide .section-num {
+    font-size: 6rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: var(--gold3);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── TAG BADGES ───────────────────────────────────────── */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .badge-gold { background: var(--gold3); color: var(--gold2); }
+  .badge-red  { background: #3A0808; color: #FF7070; }
+  .badge-green{ background: #0A2A15; color: #4ADE80; }
+
+  @media (max-width: 768px) {
+    .cover-layout, .two-col, .card-grid-2, .card-grid-3, .crit-grid { grid-template-columns: 1fr; }
+    .slide { padding: 1.5rem 1.2rem; }
+    h1.display { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating particles -->
+<div class="particles" id="particles"></div>
+
+<div class="slides" id="slides">
+
+  <!-- ══ SLIDE 1: PORTADA ════════════════════════════════════════════════ -->
+  <section class="slide active" id="s1">
+    <div class="slide-inner">
+      <div class="cover-layout">
+        <div class="cover-left">
+          <div class="amlia-logo">Aml<em>ia</em></div>
+          <div style="margin-top:0.4rem;margin-bottom:0.3rem;">
+            <span style="font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;">DETECCIÓN AML</span>
+          </div>
+          <div class="gold-line-short"></div>
+          <p class="body-text" style="font-size:0.95rem;margin-bottom:1.5rem;color:var(--grey);">
+            Sistema Inteligente de Prevención de Lavado de Activos<br>y Financiamiento del Terrorismo
+          </p>
+
+          <div style="background:var(--bg2);border:1px solid var(--gold3);border-top:3px solid var(--gold);padding:1rem 1.2rem;margin-bottom:1rem;">
+            <div style="font-size:0.7rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">POC — Banco BICE 2026</div>
+            <div style="font-size:1rem;font-weight:600;color:var(--white);">VER · VALIDAR · DECIDIR</div>
+            <div style="font-size:0.82rem;color:var(--grey);margin-top:0.3rem;">Richard Reyes · AMLIA SpA · Junio 2026</div>
+          </div>
+
+          <div class="tagline">Protegemos su institución, fortalecemos el sistema financiero</div>
+        </div>
+
+        <div class="cover-right">
+          <div style="font-size:0.7rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.8rem;">Capacidades del sistema</div>
+          <div class="feat-item">
+            <div class="feat-icon">🔍</div>
+            <div class="feat-text"><strong>Monitoreo Transaccional</strong><span>Análisis continuo de operaciones en tiempo real</span></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🧠</div>
+            <div class="feat-text"><strong>Inteligencia Artificial</strong><span>Modelos avanzados para detectar patrones sospechosos</span></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🛡️</div>
+            <div class="feat-text"><strong>Gestión de Riesgos</strong><span>Evaluación y mitigación de riesgos de manera proactiva</span></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">📋</div>
+            <div class="feat-text"><strong>Cumplimiento Normativo</strong><span>Alineación con regulaciones internacionales</span></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🎯</div>
+            <div class="feat-text"><strong>Detección de Anomalías</strong><span>Identificación temprana de actividades inusuales</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 2: POC TÍTULO ════════════════════════════════════════════ -->
+  <section class="slide" id="s2">
+    <div class="slide-inner" style="text-align:center;">
+      <div class="slide-num">Proof of Concept</div>
+      <h1 class="display">POC<br>Detección AML<br><em>Motores con IA</em></h1>
+      <div class="gold-line" style="max-width:300px;margin:1.5rem auto;"></div>
+      <p class="subtitle">Richard Reyes · AMLIA SpA · 2026</p>
+      <p class="subtitle" style="margin-top:0.5rem;">Banco BICE — Sesión controlada de 90 minutos</p>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 3: QUIEN SOY ═════════════════════════════════════════════ -->
+  <section class="slide" id="s3">
+    <div class="slide-inner">
+      <div class="slide-num">01 — Presentación</div>
+      <h2 class="slide-title">Richard Reyes<br><em style="color:var(--gold);font-style:normal;">Socio Fundador de Amlia</em></h2>
+      <div class="gold-line-short"></div>
+      <div class="two-col">
+        <div>
+          <div class="col-label">Experiencia</div>
+          <ul class="bullet-list">
+            <li>Ingeniero Universidad de Santiago</li>
+            <li>Jefe de proyecto en <strong>Banco BICE 15 años</strong></li>
+            <li>Scrum Master Banco de Chile 10 años</li>
+            <li>3 años asesor en IA motores de Fraude y AML</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-label">Diplomados</div>
+          <ul class="bullet-list">
+            <li>Gestión de Servicio — U. de Chile</li>
+            <li>Gestión de Procesos — U. de Chile</li>
+            <li>Gestión de Operaciones — U. de Chile</li>
+            <li>Gestión en TIC — U. Católica</li>
+            <li><strong>Inteligencia Artificial — U. de Chile</strong></li>
+            <li><strong>Inteligencia Artificial — U. Católica</strong></li>
+            <li><strong>Certificado AML — U. Católica</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 4: AMLIA SPA ════════════════════════════════════════════ -->
+  <section class="slide" id="s4">
+    <div class="slide-inner">
+      <div class="slide-num">02 — La empresa</div>
+      <h2 class="slide-title">AMLIA SpA</h2>
+      <div class="gold-line-short"></div>
+      <div class="highlight-box" style="margin-bottom:1.5rem;">
+        <div class="a">Startup orientado a la investigación, desarrollo e innovación en gestión y desarrollo de software, en el área de <strong style="color:var(--gold2);">Detección de Lavado de Activos con Inteligencia Artificial.</strong> Dedicados a la asesoría y desarrollo de soluciones.</div>
+      </div>
+      <div class="col-label">Equipo multidisciplinario</div>
+      <div class="card-grid card-grid-3">
+        <div class="card">
+          <div class="card-label">Ciencia de datos</div>
+          <div style="font-size:0.9rem;color:var(--offwh)">Data Science · ML Engineer · MLOps · QA ML</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Asesores especializados</div>
+          <div style="font-size:0.9rem;color:var(--offwh)">Arquitecto · Ciberseguridad · Contador Auditor</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Desarrollo</div>
+          <div style="font-size:0.9rem;color:var(--offwh)">Desarrollo Agéntico · Interfaces · Plataforma</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 5: ÁREAS DE TRABAJO ════════════════════════════════════ -->
+  <section class="slide" id="s5">
+    <div class="slide-inner">
+      <div class="slide-num">03 — Expertise</div>
+      <h2 class="slide-title">Áreas de trabajo</h2>
+      <div class="gold-line-short"></div>
+      <div class="card-grid card-grid-2" style="margin-top:0.5rem;">
+        <ul class="bullet-list">
+          <li>Estadística y Probabilidades</li>
+          <li>Machine Learning y Deep Learning</li>
+          <li>Detección de Lavado de Activos (AML)</li>
+          <li>Gestión Compliance, Riesgo y Auditoría (Leyes y Norma)</li>
+        </ul>
+        <ul class="bullet-list">
+          <li>Marcos de Trabajo TIC (ITIL, Lean)</li>
+          <li>Desarrollo de Software y Seguridad</li>
+          <li>Pilares de Seguridad, Rendimiento, Calidad y Operabilidad</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 6: MOTORES ANT ══════════════════════════════════════════ -->
+  <section class="slide" id="s6">
+    <div class="slide-inner">
+      <div class="slide-num">04 — El producto</div>
+      <h2 class="slide-title">Motores AML con IA</h2>
+      <div class="gold-line-short"></div>
+      <div class="two-col">
+        <div>
+          <ul class="bullet-list">
+            <li>Motores de apoyo al sistema de AML bancario</li>
+            <li><strong>Motores por 17 tipologías</strong> más conocidas</li>
+            <li>Motores por velocidad, redes, comportamiento y serie</li>
+            <li>Motor genérico configurable</li>
+            <li>Framework basado en buenas prácticas IA</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="bullet-list">
+            <li>Aplicar <strong>MLOPS</strong> (buenas prácticas de desarrollo IA)</li>
+            <li>Ambiente seguro con Estándar Bancario</li>
+            <li>Dashboard de apoyo a la gestión</li>
+            <li>Auditorías completas por ejecución</li>
+            <li>Investigación, data science, ml engineer, mlops y monitoreo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 7: ARQUITECTURA NUBE ═══════════════════════════════════ -->
+  <section class="slide" id="s7">
+    <div class="slide-inner">
+      <div class="slide-num">05 — Arquitectura</div>
+      <h2 class="slide-title">Diagrama de arquitectura en nube</h2>
+      <div class="gold-line-short"></div>
+      <div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:1rem;align-items:center;margin-top:0.5rem;">
+        <div>
+          <div class="col-label">Entrada</div>
+          <div class="arch-box"><div class="dot"></div>Archivo CSV / API REST</div>
+          <div class="arch-box"><div class="dot"></div>Usuario / Analista</div>
+          <div class="arch-box"><div class="dot"></div>Sistema Enterprise</div>
+        </div>
+        <div>
+          <div class="col-label" style="text-align:center;">Cluster Kubernetes (AMLIA Cloud)</div>
+          <div style="border:1px solid var(--gold);padding:0.8rem;background:var(--bg2);">
+            <div class="arch-box"><div class="dot"></div>Orquestador + Event Broker</div>
+            <div class="arch-box"><div class="dot"></div>File Server + Web UI</div>
+            <div class="arch-box"><div class="dot"></div>Backoffice + Notificador</div>
+            <div class="arch-arrow">↓</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;">
+              <div style="background:#0A1A2A;border:1px solid var(--gold3);padding:0.4rem;text-align:center;font-size:0.78rem;color:var(--gold2);">AI L1</div>
+              <div style="background:#0A1A2A;border:1px solid var(--gold3);padding:0.4rem;text-align:center;font-size:0.78rem;color:var(--gold2);">AI L2</div>
+              <div style="background:#0A1A2A;border:1px solid var(--gold3);padding:0.4rem;text-align:center;font-size:0.78rem;color:var(--gold2);">AI L3</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="col-label">Salida</div>
+          <div class="arch-box"><div class="dot"></div>Base de datos</div>
+          <div class="arch-box"><div class="dot"></div>Logs · Archive 10 años</div>
+          <div class="arch-box"><div class="dot"></div>REST API · Webhook</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 8: PROBLEMÁTICA ═════════════════════════════════════════ -->
+  <section class="slide" id="s8">
+    <div class="slide-inner">
+      <div class="slide-num">06 — El problema</div>
+      <h2 class="slide-title">Problemática en AML</h2>
+      <div class="gold-line-short"></div>
+      <div class="card-grid card-grid-3" style="margin-top:0.8rem;">
+        <div class="card" style="border-top-color:#C84B4B;">
+          <div class="card-label" style="color:#C84B4B;">Falsos positivos</div>
+          <div class="card-value" style="color:#FF8080;">Alto %</div>
+          <div class="card-desc">Las áreas de compliance a través de sus motores de reglas obtienen un porcentaje alto de transacciones con alertas falsas.</div>
+        </div>
+        <div class="card" style="border-top-color:#C84B4B;">
+          <div class="card-label" style="color:#C84B4B;">Falsos negativos</div>
+          <div class="card-value" style="color:#FF8080;">Mínimo</div>
+          <div class="card-desc">Los casos reales que se pierden representan el mayor riesgo regulatorio para la institución financiera.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Carga operativa</div>
+          <div class="card-value">Analistas</div>
+          <div class="card-desc">Los analistas dedican su tiempo a <strong>cerrar casos</strong> más que a <strong>investigar</strong> — sin agregar valor real al proceso.</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:1rem;">
+        <div class="a">Los motores de reglas tradicionales no evolucionan con el lavador. La IA aprende de patrones, no de reglas fijas.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 9: OBJETIVOS ════════════════════════════════════════════ -->
+  <section class="slide" id="s9">
+    <div class="slide-inner">
+      <div class="slide-num">07 — Objetivo</div>
+      <h2 class="slide-title">Objetivos de la POC</h2>
+      <div class="gold-line-short"></div>
+      <div class="highlight-box" style="margin-bottom:1.2rem;">
+        <div class="q">¿Es factible que AMLIA procese transacciones, detecte patrones AML, explique alertas y entregue trazabilidad auditable para apoyar a un equipo de cumplimiento?</div>
+        <div class="a" style="margin-top:0.5rem;">Demostrar, en una sesión controlada de aproximadamente 90 minutos, la factibilidad técnica y funcional de AMLIA para identificar, explicar y auditar patrones de lavado de activos mediante motores experimentales por tipología.</div>
+      </div>
+      <div class="highlight-box" style="border-left-color:#666;background:linear-gradient(90deg,#0D1420,var(--bg2));">
+        <div class="q" style="color:var(--grey);">La PoC no busca:</div>
+        <div class="a" style="color:var(--grey);">Certificar desempeño estadístico productivo ni reemplazar procesos actuales. Busca demostrar <strong style="color:var(--offwh);">viabilidad conceptual.</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 10: ALCANCE ════════════════════════════════════════════ -->
+  <section class="slide" id="s10">
+    <div class="slide-inner">
+      <div class="slide-num">08 — Alcance</div>
+      <h2 class="slide-title">Alcance de la POC</h2>
+      <div class="gold-line-short"></div>
+      <p class="body-text" style="margin-bottom:0.8rem;font-size:0.95rem;">La PoC cubre una demostración funcional mínima de:</p>
+      <div class="crit-grid">
+        <div class="crit-item">
+          <div><div class="crit-name">Carga de datos</div><div class="crit-desc">Recepción de archivo sintético o anonimizado. Validación de errores de estructura, registros válidos/rechazados.</div></div>
+        </div>
+        <div class="crit-item">
+          <div><div class="crit-name">Ejecución de motores</div><div class="crit-desc">Motores AML por tipología y familia. Resultado por motor, alertas, métricas y estado.</div></div>
+        </div>
+        <div class="crit-item">
+          <div><div class="crit-name">Evidencia y explicabilidad</div><div class="crit-desc">Ventana temporal, transacciones y patrón. Explicabilidad que justifica la alerta vía SHAP.</div></div>
+        </div>
+        <div class="crit-item">
+          <div><div class="crit-name">Auditoría y trazabilidad</div><div class="crit-desc">Logs técnicos de ejecución. Reconstrucción desde carga hasta alerta. Seguridad y gobierno por roles.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 11: EXCLUSIONES ════════════════════════════════════════ -->
+  <section class="slide" id="s11">
+    <div class="slide-inner">
+      <div class="slide-num">09 — Fuera del alcance</div>
+      <h2 class="slide-title">La POC <em style="color:#FF6060;font-style:normal;">no</em> incluye</h2>
+      <div class="gold-line-short"></div>
+      <div class="card-grid card-grid-2">
+        <ul class="bullet-list">
+          <li><span style="color:#FF8080;">✗</span> Piloto productivo o MVP completo</li>
+          <li><span style="color:#FF8080;">✗</span> Integración core bancaria y procesamiento diario real</li>
+          <li><span style="color:#FF8080;">✗</span> Login corporativo real</li>
+          <li><span style="color:#FF8080;">✗</span> Evaluación estadística definitiva</li>
+          <li><span style="color:#FF8080;">✗</span> Entrenamiento productivo</li>
+        </ul>
+        <ul class="bullet-list">
+          <li><span style="color:#FF8080;">✗</span> Conexión con regulador</li>
+          <li><span style="color:#FF8080;">✗</span> Generación ni automatización ROS</li>
+          <li><span style="color:#FF8080;">✗</span> Sustitución del analista</li>
+          <li><span style="color:#FF8080;">✗</span> SLA productivo</li>
+          <li><span style="color:#FF8080;">✗</span> Garantía de reducción de falsos positivos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 12: DATOS SINTÉTICOS ═══════════════════════════════════ -->
+  <section class="slide" id="s12">
+    <div class="slide-inner">
+      <div class="slide-num">10 — Dataset</div>
+      <h2 class="slide-title">Datos Sintéticos — SAML-D</h2>
+      <div class="gold-line-short"></div>
+      <div class="card-grid card-grid-3" style="margin-bottom:0.8rem;">
+        <div class="card">
+          <div class="card-label">Total transacciones</div>
+          <div class="card-value">9.504.852</div>
+          <div class="card-desc">Dataset completo SAML-D.csv</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Cuentas únicas</div>
+          <div class="card-value">855.460</div>
+          <div class="card-desc">Emisoras + Receptoras consolidadas</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Tasa de lavado</div>
+          <div class="card-value" style="color:#FF8080;">0,104%</div>
+          <div class="card-desc">9.873 transacciones alertadas sobre 9.494.979 normales</div>
+        </div>
+      </div>
+      <table class="data-table">
+        <tr><th>Métrica</th><th>Valor</th></tr>
+        <tr><td>Total de Transacciones</td><td class="num">9.504.852</td></tr>
+        <tr><td>Cuentas Emisoras Únicas</td><td class="num">292.715</td></tr>
+        <tr><td>Cuentas Receptoras Únicas</td><td class="num">652.266</td></tr>
+        <tr><td class="bold">Total Cuentas Únicas (Consolidadas)</td><td class="num bold">855.460</td></tr>
+        <tr><td>Transacciones Normales (CLEARED)</td><td class="num">9.494.979 (99,896%)</td></tr>
+        <tr><td>Transacciones de Lavado (ALERTED)</td><td class="num" style="color:#FF8080;">9.873 (0,104%)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 13: CRITERIOS DE ÉXITO ═════════════════════════════════ -->
+  <section class="slide" id="s13">
+    <div class="slide-inner">
+      <div class="slide-num">11 — Criterios</div>
+      <h2 class="slide-title">Criterios de Éxito de la POC</h2>
+      <div class="gold-line-short"></div>
+      <div class="crit-grid" style="grid-template-columns:1fr 1fr 1fr;gap:0.6rem;">
+        <div class="crit-item"><div><div class="crit-name">Carga</div><div class="crit-desc">El sistema recibe y valida archivo correctamente</div></div></div>
+        <div class="crit-item"><div><div class="crit-name">Errores</div><div class="crit-desc">El sistema detecta errores y explica la recarga requerida</div></div></div>
+        <div class="crit-item"><div><div class="crit-name">Motor</div><div class="crit-desc">Al menos un motor genera alertas por tipología</div></div></div>
+        <div class="crit-item"><div><div class="crit-name">Evidencia</div><div class="crit-desc">Una alerta se explica con transacciones y ventana temporal</div></div></div>
+        <div class="crit-item"><div><div class="crit-name">Explicabilidad</div><div class="crit-desc">Se muestra por qué el patrón fue detectado (SHAP)</div></div></div>
+        <div class="crit-item"><div><div class="crit-name">Auditoría</div><div class="crit-desc">Se reconstruye carga → motor → alerta → evidencia</div></div></div>
+      </div>
+      <div class="highlight-box" style="margin-top:1rem;">
+        <div class="q">Negocio</div>
+        <div class="a">La entidad entiende cómo AMLIA podría resolver el problema de compliance en la práctica.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 14: PREGUNTAS DIFÍCILES 1 ══════════════════════════════ -->
+  <section class="slide" id="s14">
+    <div class="slide-inner">
+      <div class="slide-num">12 — Q&A</div>
+      <h2 class="slide-title">Preguntas difíciles y sus respuestas</h2>
+      <div class="gold-line-short"></div>
+      <div class="highlight-box" style="margin-bottom:0.7rem;">
+        <div class="q">¿Esto ya puede pasar a producción?</div>
+        <div class="a">No. Esta PoC demuestra factibilidad. Para producción se requiere piloto con datos reales, integración, seguridad productiva, monitoreo, validación estadística y gobierno formal.</div>
+      </div>
+      <div class="highlight-box" style="margin-bottom:0.7rem;">
+        <div class="q">¿Las métricas son definitivas?</div>
+        <div class="a">No. Son métricas experimentales sobre datos sintéticos o anonimizados. Sirven para demostrar cómo se mediría el motor, no para certificar performance productivo.</div>
+      </div>
+      <div class="highlight-box">
+        <div class="q">¿Por qué usar datos sintéticos?</div>
+        <div class="a">Porque la PoC busca demostrar viabilidad sin exponer datos sensibles. Los datos reales se usan en una etapa posterior controlada (piloto).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 15: PREGUNTAS DIFÍCILES 2 ══════════════════════════════ -->
+  <section class="slide" id="s15">
+    <div class="slide-inner">
+      <div class="slide-num">12 — Q&A (continuación)</div>
+      <h2 class="slide-title">Preguntas difíciles y sus respuestas</h2>
+      <div class="gold-line-short"></div>
+      <div class="highlight-box" style="margin-bottom:0.7rem;">
+        <div class="q">¿Esto reemplaza las reglas actuales?</div>
+        <div class="a">No. AMLIA puede complementar reglas tradicionales con motores por tipología, evidencia, explicabilidad y trazabilidad. Coexistencia, no sustitución.</div>
+      </div>
+      <div class="highlight-box" style="margin-bottom:0.7rem;">
+        <div class="q">¿Qué se demuestra en 90 minutos?</div>
+        <div class="a">El flujo completo: carga, validación, motor, alerta, evidencia, explicación, logs, auditoría y seguridad conceptual.</div>
+      </div>
+      <div class="highlight-box">
+        <div class="q">¿Qué no se demuestra en 90 minutos?</div>
+        <div class="a">Escalamiento productivo, reducción real de falsos positivos, integración core, ni cumplimiento final ante regulador.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 16: PREGUNTAS DIFÍCILES 3 ══════════════════════════════ -->
+  <section class="slide" id="s16">
+    <div class="slide-inner">
+      <div class="slide-num">12 — Q&A (continuación)</div>
+      <h2 class="slide-title">Preguntas difíciles y sus respuestas</h2>
+      <div class="gold-line-short"></div>
+      <div class="highlight-box" style="margin-bottom:0.7rem;">
+        <div class="q">¿Qué pasa si el banco quiere usar datos reales?</div>
+        <div class="a">Se puede hacer, pero eso se acerca a un piloto controlado. Requiere acuerdo de seguridad, anonimizado, acceso, retención y responsabilidades definidas entre las partes.</div>
+      </div>
+      <div class="highlight-box">
+        <div class="q">¿Cuál es el resultado esperado de la PoC?</div>
+        <div class="a">Una decisión de factibilidad: si la solución tiene sentido para avanzar a piloto, qué brechas existen y qué datos/integraciones se necesitan para continuar.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SLIDE 17: CIERRE ══════════════════════════════════════════════ -->
+  <section class="slide divider-slide" id="s17">
+    <div class="slide-inner" style="text-align:center;">
+      <div style="font-size:5rem;margin-bottom:0.5rem;">🛡️</div>
+      <h1 class="display" style="font-size:3.5rem;">Preguntas</h1>
+      <div class="gold-line" style="max-width:200px;margin:1.5rem auto;"></div>
+      <p class="subtitle">Estamos disponibles para responder cualquier consulta</p>
+      <div style="margin-top:2rem;display:inline-block;border:1px solid var(--gold3);padding:1rem 2rem;background:var(--bg2);">
+        <div style="font-size:0.8rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:0.3rem;">Contacto</div>
+        <div style="font-size:1rem;color:var(--offwh);">Richard Reyes · AMLIA SpA · 2026</div>
+      </div>
+      <div class="tagline" style="max-width:600px;margin:2rem auto 0;">Protegemos su institución, fortalecemos el sistema financiero</div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <button class="nav-btn" id="prev">&#8592;</button>
+  <div class="nav-dots" id="dots"></div>
+  <span class="nav-counter" id="counter">1 / 17</span>
+  <button class="nav-btn" id="next">&#8594;</button>
+</nav>
+
+<script>
+  // Particles
+  const pc = document.getElementById('particles');
+  for (let i = 0; i < 60; i++) {
+    const d = document.createElement('div');
+    d.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    d.style.cssText = `
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      background:${Math.random()>0.7?'#C8961E':'rgba(200,150,30,0.3)'};
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    pc.appendChild(d);
+  }
+
+  // Slide navigation
+  const slides = document.querySelectorAll('.slide');
+  const dotsEl = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  let cur = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i===0?' active':'');
+    dot.onclick = () => go(i);
+    dotsEl.appendChild(dot);
+  });
+
+  function go(n) {
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length-1, n));
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+    counter.textContent = `${cur+1} / ${slides.length}`;
+  }
+
+  document.getElementById('prev').onclick = () => go(cur-1);
+  document.getElementById('next').onclick = () => go(cur+1);
+
+  document.addEventListener('keydown', e => {
+    if (e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') go(cur+1);
+    if (e.key==='ArrowLeft'||e.key==='ArrowUp') go(cur-1);
+  });
+
+  // Touch swipe
+  let tx = 0;
+  document.addEventListener('touchstart', e => tx = e.touches[0].clientX);
+  document.addEventListener('touchend', e => {
+    const diff = tx - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) go(diff > 0 ? cur+1 : cur-1);
+  });
+</script>
+</body>
+</html>
