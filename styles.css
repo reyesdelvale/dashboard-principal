@@ -109,8 +109,8 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.02em;lin
 
 /* ---------------- hero ---------------- */
 /* banner de infografía a sangre completa, justo debajo del menú superior */
-.intro-banner{position:relative;z-index:1;padding:78px 0 0;line-height:0;width:100%}
-.intro-img{width:100%;height:auto;display:block}
+.intro-banner{position:relative;z-index:1;padding:85px 5px 5px;line-height:0;width:100%}
+.intro-img{width:100%;height:auto;display:block;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 10px,black calc(100% - 10px),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 10px,black calc(100% - 10px),transparent 100%)}
 
 .hero{position:relative;min-height:auto;display:flex;align-items:center;overflow:hidden;padding-top:56px;padding-bottom:64px}
 .hero .container{position:relative;z-index:2}
