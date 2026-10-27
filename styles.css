@@ -88,7 +88,7 @@ p{margin:0}
 .nav-links a.btn:hover{color:#fff}
 .nav-toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
 .nav-toggle span{width:20px;height:2px;background:var(--navy);border-radius:2px}
-@media (max-width:900px){
+@media (max-width:1040px){
   .nav-toggle{display:flex}
   .nav-links{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:8px clamp(16px,5vw,40px) 18px;box-shadow:var(--shadow)}
   .nav-links.open{display:flex}

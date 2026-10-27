@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMLIA — Trabaja con nosotros</title>
+<meta name="description" content="AMLIA busca Data Scientist, ML Engineer y MLOps Engineer para construir inteligencia artificial contra el fraude y el lavado de activos.">
+<meta property="og:title" content="AMLIA está contratando: Data Scientist, ML Engineer y MLOps Engineer">
+<meta property="og:description" content="Construye IA contra el fraude y el lavado de activos con nosotros.">
+<meta property="og:image" content="https://amlia.cl/assets/amlia-empleo-1200x627.png">
+<meta property="og:url" content="https://amlia.cl/trabaja-con-nosotros.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+.job{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);scroll-margin-top:96px;overflow:hidden}
+.job-head{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;padding:24px 26px}
+.job-head .ic{width:56px;height:56px}
+.job-head .ic svg{width:26px;height:26px}
+.job-title{flex:1 1 260px;min-width:0}
+.job-title h2{font-size:clamp(1.3rem,2.4vw,1.6rem);font-weight:800}
+.job-title p{font-size:15px;margin-top:4px}
+.job-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.job details{border-top:1px solid var(--line-2)}
+.job summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:12px 26px;font-weight:700;color:var(--blue)}
+.job summary::-webkit-details-marker{display:none}
+.job summary .pm{width:28px;height:28px;border-radius:50%;background:var(--blue-50);position:relative;flex-shrink:0}
+.job summary .pm::before,.job summary .pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--blue);transform:translate(-50%,-50%)}
+.job summary .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .2s ease}
+.job details[open] summary .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.job-body{padding:4px 26px 26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:22px 32px}
+.job-body h3{font-size:15px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-t);margin-bottom:10px}
+.job-body ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.job-body li{position:relative;padding-left:20px;font-size:15px}
+.job-body li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.job-body li.ai{font-weight:600;color:var(--navy)}
+.job-body li.ai::before{background:var(--blue)}
+.job-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding-top:6px;border-top:1px solid var(--line-2);padding-top:18px}
+.job-foot p{font-size:14px;color:var(--fg-mute)}
+.fact{display:flex;gap:14px;align-items:flex-start}
+.fact h3{margin:0 0 4px;font-size:17px}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand" aria-label="AMLIA inicio"><img src="assets/amlia-logo.png" alt="Amlia, Soluciones Inteligentes de cumplimiento" width="739" height="246"></a>
+    <button class="nav-toggle" aria-label="Menú" aria-controls="menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="menu" aria-label="Principal">
+      <a href="servicios.html">Servicios</a>
+      <a href="casos-de-uso.html">Casos de uso</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="paquetes.html">Paquetes</a>
+      <a href="trabaja-con-nosotros.html" class="active" aria-current="page">Trabaja con nosotros</a>
+      <a href="contacto.html" class="btn btn-primary">Agenda una demo</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero"><div class="container">
+  <div class="breadcrumb" data-reveal><a href="index.html">Inicio</a> · Trabaja con nosotros</div>
+  <span class="eyebrow" data-reveal><span class="dot"></span>Estamos contratando · 3 cargos</span>
+  <h1 class="display-l" data-reveal style="--d:.06s">Construye IA contra el <span class="accent-t">fraude</span> con nosotros</h1>
+  <p class="lead" data-reveal style="--d:.12s">En AMLIA desarrollamos inteligencia artificial para detectar fraude y lavado de activos en bancos y fintech. Buscamos tres perfiles para un mismo equipo: de los datos al modelo en producción. En los tres valoramos el dominio de agentes de IA.</p>
+  <div class="hero-cta" data-reveal style="--d:.18s;margin-top:24px">
+    <a href="#data-scientist" class="btn btn-outline">Data Scientist</a>
+    <a href="#ml-engineer" class="btn btn-outline">ML Engineer</a>
+    <a href="#mlops-engineer" class="btn btn-outline">MLOps Engineer</a>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:20px"><div class="container" style="display:grid;gap:18px">
+
+  <!-- ================= DATA SCIENTIST ================= -->
+  <article class="job" id="data-scientist" data-reveal>
+    <div class="job-head">
+      <span class="ic purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+      <div class="job-title">
+        <h2>Data Scientist</h2>
+        <p>Crea modelos que detectan patrones de fraude y lavado de activos, y explica cada decisión.</p>
+        <div class="job-meta"><span class="chip purple">Machine Learning</span><span class="chip purple">Deep Learning</span><span class="chip">Agentes de IA</span></div>
+      </div>
+      <a class="btn btn-primary" href="mailto:info@amlia.cl?subject=Postulaci%C3%B3n%20Data%20Scientist">Postular</a>
+    </div>
+    <details>
+      <summary>Ver descripción del cargo <span class="pm" aria-hidden="true"></span></summary>
+      <div class="job-body">
+        <div><h3>Qué harás</h3><ul>
+          <li>Gestionar datos en todas sus dimensiones: extracción, limpieza, calidad, ingeniería de variables y series temporales.</li>
+          <li>Desarrollar modelos supervisados y no supervisados que identifiquen patrones de fraude y lavado de activos.</li>
+          <li>Diseñar experimentos y entrenamientos: particiones temporales, validación y métricas para clases desbalanceadas.</li>
+          <li>Explicar cada decisión del modelo para analistas, auditoría y regulador.</li>
+          <li>Entregar modelos documentados para exponerlos como servicios.</li>
+          <li class="ai">Explorar agentes de IA y LLMs para apoyar la investigación de alertas.</li>
+        </ul></div>
+        <div><h3>Conocimientos</h3><ul>
+          <li>XGBoost / LightGBM, Random Forest, Isolation Forest y clustering.</li>
+          <li>Autoencoders variacionales (VAE), Transformers y modelos secuenciales.</li>
+          <li>Explicabilidad: SHAP, LIME u otras técnicas.</li>
+          <li>Python (pandas, scikit-learn, PyTorch o TensorFlow) y SQL.</li>
+          <li class="ai">Agentes de IA: LLMs, RAG y frameworks como LangChain, LangGraph o CrewAI.</li>
+          <li>Deseable: grafos (GNN, Neo4j), MLflow, nube y conocimiento de fraude, AML o banca.</li>
+        </ul></div>
+        <div><h3>Experiencia</h3><ul>
+          <li>Modelos de Machine Learning que hayan llegado a producción.</li>
+          <li>Datos desbalanceados y detección de anomalías.</li>
+        </ul></div>
+        <div><h3>Habilidades y actitud</h3><ul>
+          <li>Pensamiento crítico: cuestionar los datos y los resultados.</li>
+          <li>Explicar lo técnico en lenguaje simple.</li>
+          <li>Autonomía, curiosidad y ganas de aprender.</li>
+          <li>Rigor y ética con datos sensibles.</li>
+        </ul></div>
+        <div class="job-foot"><a class="btn btn-primary" href="mailto:info@amlia.cl?subject=Postulaci%C3%B3n%20Data%20Scientist">Postular a Data Scientist</a><p>Envía tu CV y, si tienes, un repositorio o proyecto que muestre tu trabajo.</p></div>
+      </div>
+    </details>
+  </article>
+
+  <!-- ================= ML ENGINEER ================= -->
+  <article class="job" id="ml-engineer" data-reveal>
+    <div class="job-head">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
+      <div class="job-title">
+        <h2>ML Engineer</h2>
+        <p>Convierte modelos en servicios robustos que consumen nuestras aplicaciones, incluidos agentes de IA.</p>
+        <div class="job-meta"><span class="chip">APIs y tiempo real</span><span class="chip">Ingeniería de software</span><span class="chip">Agentes de IA</span></div>
+      </div>
+      <a class="btn btn-primary" href="mailto:info@amlia.cl?subject=Postulaci%C3%B3n%20ML%20Engineer">Postular</a>
+    </div>
+    <details>
+      <summary>Ver descripción del cargo <span class="pm" aria-hidden="true"></span></summary>
+      <div class="job-body">
+        <div><h3>Qué harás</h3><ul>
+          <li>Llevar modelos (XGBoost, VAE, Transformers, Isolation Forest) a servicios en producción.</li>
+          <li>Desarrollar APIs y procesos batch y en tiempo real para el scoring de transacciones.</li>
+          <li>Construir pipelines de variables iguales en entrenamiento y producción.</li>
+          <li class="ai">Desarrollar agentes de IA que integren modelos, herramientas y datos para apoyar a los analistas.</li>
+          <li>Optimizar latencia, rendimiento y costo de inferencia.</li>
+          <li>Escribir pruebas de código, de datos y de modelos.</li>
+        </ul></div>
+        <div><h3>Conocimientos</h3><ul>
+          <li>Python avanzado y buenas prácticas de ingeniería de software.</li>
+          <li>FastAPI o similar, Docker y SQL.</li>
+          <li>PyTorch o TensorFlow, scikit-learn y XGBoost.</li>
+          <li class="ai">Agentes de IA: LLMs, tool calling, RAG, LangChain, LangGraph o CrewAI.</li>
+          <li>Deseable: streaming, feature stores, bases de grafos y protocolo MCP.</li>
+        </ul></div>
+        <div><h3>Experiencia</h3><ul>
+          <li>Modelos de Machine Learning llevados a producción.</li>
+          <li>APIs o servicios de alta disponibilidad.</li>
+        </ul></div>
+        <div><h3>Habilidades y actitud</h3><ul>
+          <li>Rigor: lo que no se prueba, no está terminado.</li>
+          <li>Comunicación clara con Data Science y cumplimiento.</li>
+          <li>Autonomía y ganas de aprender.</li>
+          <li>Responsabilidad con datos sensibles.</li>
+        </ul></div>
+        <div class="job-foot"><a class="btn btn-primary" href="mailto:info@amlia.cl?subject=Postulaci%C3%B3n%20ML%20Engineer">Postular a ML Engineer</a><p>Envía tu CV y, si tienes, un repositorio o proyecto que muestre tu trabajo.</p></div>
+      </div>
+    </details>
+  </article>
+
+  <!-- ================= MLOPS ENGINEER ================= -->
+  <article class="job" id="mlops-engineer" data-reveal>
+    <div class="job-head">
+      <span class="ic teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
+      <div class="job-title">
+        <h2>MLOps Engineer</h2>
+        <p>Construye la plataforma donde modelos y agentes se entrenan, despliegan, monitorean y mejoran.</p>
+        <div class="job-meta"><span class="chip teal">CI/CD y Kubernetes</span><span class="chip teal">Monitoreo</span><span class="chip">Agentes de IA</span></div>
+      </div>
+      <a class="btn btn-primary" href="mailto:info@amlia.cl?subject=Postulaci%C3%B3n%20MLOps%20Engineer">Postular</a>
+    </div>
+    <details>
+      <summary>Ver descripción del cargo <span class="pm" aria-hidden="true"></span></summary>
+      <div class="job-body">
+        <div><h3>Qué harás</h3><ul>
+          <li>Automatizar el ciclo de vida de los modelos: entrenamiento, versionado, despliegue y reentrenamiento.</li>
+          <li>Implementar CI/CD para código, datos y modelos.</li>
+          <li>Monitorear desempeño y deriva (drift) de datos y modelos, con alertas.</li>
+          <li class="ai">Operar agentes de IA en producción: evaluación, trazas, costos y salvaguardas.</li>
+          <li>Asegurar trazabilidad y registros auditables para cumplimiento y regulador.</li>
+          <li>Operar infraestructura en la nube con estándares de seguridad bancaria.</li>
+        </ul></div>
+        <div><h3>Conocimientos</h3><ul>
+          <li>Docker y Kubernetes.</li>
+          <li>MLflow o herramientas similares de registro de modelos.</li>
+          <li>CI/CD e infraestructura como código.</li>
+          <li>Nube (AWS, GCP o Azure), observabilidad y seguridad.</li>
+          <li class="ai">Agentes de IA: despliegue, monitoreo y evaluación de LLMs y agentes.</li>
+          <li>Deseable: orquestadores (Airflow, Prefect), feature stores y entornos regulados.</li>
+        </ul></div>
+        <div><h3>Experiencia</h3><ul>
+          <li>Modelos de Machine Learning operados en producción.</li>
+          <li>Infraestructura en la nube y automatización.</li>
+        </ul></div>
+        <div><h3>Habilidades y actitud</h3><ul>
+          <li>Rigor: lo que no se monitorea, no está terminado.</li>
+          <li>Comunicación clara con Data Science, ML Engineering y cumplimiento.</li>
+          <li>Autonomía y ganas de aprender.</li>
+          <li>Responsabilidad con datos sensibles.</li>
+        </ul></div>
+        <div class="job-foot"><a class="btn btn-primary" href="mailto:info@amlia.cl?subject=Postulaci%C3%B3n%20MLOps%20Engineer">Postular a MLOps Engineer</a><p>Envía tu CV y, si tienes, un repositorio o proyecto que muestre tu trabajo.</p></div>
+      </div>
+    </details>
+  </article>
+</div></section>
+
+<section class="sec alt"><div class="container">
+  <div class="sec-head" data-reveal>
+    <div class="sec-title"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9l3-6z"/><path d="M3 9h18M12 21L8 9l4-6 4 6-4 12"/></svg></span><h2>Por qué AMLIA</h2></div>
+  </div>
+  <div class="grid cols-3">
+    <div class="card fact" data-reveal><span class="ic green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><h3>Un problema que importa</h3><p>Tu trabajo ayuda a detener el fraude y el lavado de activos que financian al crimen organizado.</p></div></div>
+    <div class="card fact" data-reveal style="--d:.08s"><span class="ic purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.5 10.9V16h7v-2.1A6 6 0 0012 3z"/></svg></span><div><h3>Investigación aplicada</h3><p>Modelos de grafos, secuencias, autoencoders y agentes de IA, llevados a producción real.</p></div></div>
+    <div class="card fact" data-reveal style="--d:.16s"><span class="ic teal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.5a3 3 0 010 5.5M18 14.5c1.8.9 3 2.9 3 5.5"/></svg></span><div><h3>Equipo multidisciplinario</h3><p>Ciencia de datos, ingeniería, ciberseguridad y expertos en cumplimiento trabajando juntos.</p></div></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="container"><div class="cta-band" data-reveal>
+  <span class="eyebrow"><span class="dot"></span>Postula</span>
+  <h2 class="display-l">¿No calzas exacto con un cargo? <span class="accent-t">Escríbenos igual</span></h2>
+  <p class="lead">Si te apasiona la IA aplicada al fraude y al cumplimiento, queremos conocerte.</p>
+  <div class="cta-actions"><a href="mailto:info@amlia.cl?subject=Postulaci%C3%B3n%20espont%C3%A1nea" class="btn btn-white">Enviar mi CV →</a><a href="https://wa.me/56961784164" class="btn btn-ghost-light" target="_blank" rel="noopener">WhatsApp</a></div>
+</div></div></section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand"><img src="assets/amlia-logo.png" alt="Amlia" width="739" height="246"></a>
+        <p>Sistema inteligente de prevención de lavado de activos y financiamiento del terrorismo para entidades financieras.</p>
+      </div>
+      <div><h5>Producto</h5><ul><li><a href="servicios.html">Servicios</a></li><li><a href="casos-de-uso.html">Casos de uso</a></li><li><a href="metodologia.html">Metodología</a></li><li><a href="paquetes.html">Paquetes</a></li></ul></div>
+      <div><h5>Empresa</h5><ul><li><a href="contacto.html">Contacto</a></li><li><a href="trabaja-con-nosotros.html">Trabaja con nosotros</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://wa.me/56961784164" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div><h5>Contacto</h5><ul><li><a href="mailto:info@amlia.cl">info@amlia.cl</a></li><li><a href="https://wa.me/56961784164" target="_blank" rel="noopener">+56 9 6178 4164</a></li><li><a href="https://amlia.cl">amlia.cl</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> AMLIA. Todos los derechos reservados.</span>
+      <span>Cumplimiento GAFI / FATF · Solución empresarial</span>
+    </div>
+  </div>
+</footer>
+<a class="wa" href="https://wa.me/56961784164" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3zm4.6-6.2c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg>
+</a>
+<script src="site.js"></script>
+<script>
+// Abre automáticamente el cargo enlazado (por ejemplo trabaja-con-nosotros.html#ml-engineer)
+(function(){ var h = location.hash && document.querySelector(location.hash + ' details'); if (h) h.open = true; })();
+</script>
+</body>
+</html>
