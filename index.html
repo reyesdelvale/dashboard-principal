@@ -1,270 +1,444 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMLIA — Detección de Lavado de Activos con Inteligencia Artificial</title>
-<meta name="description" content="AMLIA ayuda a bancos y fintech a detectar y prevenir el lavado de activos con IA explicable, grafos y aprendizaje automático. Menos falsos positivos, alertas priorizadas, cumplimiento GAFI/FATF.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amlia — Prevención de delitos económicos con IA</title>
+<meta name="description" content="Amlia: inteligencia artificial para el Encargado de Prevención de Delitos y el Oficial de Cumplimiento. Gestión de riesgos, canal de denuncias, debida diligencia, monitoreo AML y detección de fraude.">
+<link rel="icon" type="image/png" href="img/logo-amlia.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F6FB}
+a{color:#1E5BD8}a:hover{color:#0A2463}
+html{scroll-behavior:smooth}
+@media (max-width: 860px){ .flow-arrow{transform:rotate(90deg)} }
+</style>
 </head>
 <body>
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #F3F6FB; color: #3B4A63; font-size: 16px; line-height: 1.6; overflow-x: hidden">
 
-<!-- ===================== NAV ===================== -->
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="brand" aria-label="AMLIA inicio"><img src="assets/amlia-logo.png" alt="Amlia, Soluciones Inteligentes de cumplimiento" width="739" height="246"></a>
-    <button class="nav-toggle" aria-label="Menú" aria-controls="menu"><span></span><span></span><span></span></button>
-    <nav class="nav-links" id="menu" aria-label="Principal">
-      <a href="servicios.html">Servicios</a>
-      <a href="casos-de-uso.html">Casos de uso</a>
-      <a href="metodologia.html">Metodología</a>
-      <a href="paquetes.html">Paquetes</a>
-      <a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
-      <a href="contacto.html" class="btn btn-primary">Agenda una demo</a>
-    </nav>
-  </div>
+<!-- ENCABEZADO -->
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE5F2; padding: 10px clamp(16px, 5vw, 64px)">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 32px">
+<a href="#inicio" style="display: inline-flex; align-items: center; min-height: 44px"><img src="img/logo-amlia.png" alt="Amlia, Soluciones Inteligentes de cumplimiento" style="height: 84px; width: auto; display: block"></a>
+<nav aria-label="Secciones" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px">
+<a href="#soluciones" style="display: inline-flex; align-items: center; min-height: 44px; color: #0A2463; text-decoration: none; font-size: 15px; font-weight: 600">Soluciones</a>
+<a href="#servicios" style="display: inline-flex; align-items: center; min-height: 44px; color: #0A2463; text-decoration: none; font-size: 15px; font-weight: 600">Servicios</a>
+<a href="#marco-legal" style="display: inline-flex; align-items: center; min-height: 44px; color: #0A2463; text-decoration: none; font-size: 15px; font-weight: 600">Marco legal</a>
+<a href="#seguridad" style="display: inline-flex; align-items: center; min-height: 44px; color: #0A2463; text-decoration: none; font-size: 15px; font-weight: 600">Seguridad</a>
+<a href="#nosotros" style="display: inline-flex; align-items: center; min-height: 44px; color: #0A2463; text-decoration: none; font-size: 15px; font-weight: 600">Nosotros</a>
+<a href="contacto.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; background: #1E5BD8; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700; border-radius: 10px">Contacto</a>
+</nav>
+</div>
 </header>
 
-<!-- ===================== PILARES ===================== -->
-<div class="pillars" aria-label="Pilares">
-  <div class="container">
-    <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>Cumplimiento normativo</div>
-    <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Gestión eficiente de riesgos</div>
-    <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Decisiones basadas en datos</div>
-    <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.5a3 3 0 010 5.5M18 14.5c1.8.9 3 2.9 3 5.5"/></svg>Confianza y transparencia</div>
-    <div class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.5 10.9V16h7v-2.1A6 6 0 0012 3z"/></svg>Innovación con IA</div>
-  </div>
+<!-- FRANJA DE PILARES -->
+<div style="background: #0A2463; padding: 18px clamp(16px, 5vw, 64px)">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 28px">
+<div style="display: flex; align-items: center; gap: 12px; color: #FFFFFF; font-size: 14px; font-weight: 600; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7FC4FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg>Ley 19.913, 20.393 y 21.595</div>
+<div style="display: flex; align-items: center; gap: 12px; color: #FFFFFF; font-size: 14px; font-weight: 600; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7FC4FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg>Gestión del riesgo penal</div>
+<div style="display: flex; align-items: center; gap: 12px; color: #FFFFFF; font-size: 14px; font-weight: 600; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7FC4FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>Decisiones basadas en datos</div>
+<div style="display: flex; align-items: center; gap: 12px; color: #FFFFFF; font-size: 14px; font-weight: 600; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7FC4FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><path d="M16 5.5a3 3 0 010 5.5M18 14.5c1.8.9 3 2.9 3 5.5"></path></svg>Confianza y transparencia</div>
+<div style="display: flex; align-items: center; gap: 12px; color: #FFFFFF; font-size: 14px; font-weight: 600; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7FC4FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 00-3.5 10.9V16h7v-2.1A6 6 0 0012 3z"></path></svg>Innovación con IA</div>
+</div>
 </div>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow" data-reveal><span class="dot"></span>Detección AML · en tiempo real</span>
-        <h1 id="hero-title" class="display-xl" data-reveal style="--d:.06s">Detecta el <span class="accent-t">lavado de activos</span> con IA explicable</h1>
-        <div class="accent-rule" data-reveal style="--d:.1s"></div>
-        <p class="lead" data-reveal style="--d:.12s">Grafos, modelos explicables y MLOps que se integran a tus equipos de datos y cumplimiento. Menos falsos positivos, alertas priorizadas y cumplimiento GAFI/FATF.</p>
-        <div class="hero-cta" data-reveal style="--d:.18s">
-          <a href="metodologia.html" class="btn btn-primary">Ver cómo funciona →</a>
-          <a href="casos-de-uso.html" class="link-accent">Casos de uso <span class="arr">↗</span></a>
-        </div>
-        <ul class="hero-trust" data-reveal style="--d:.2s" aria-label="Garantías de la plataforma">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5.5c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5V6z"/><path d="M9 12l2 2 4-4"/></svg>Cumplimiento GAFI / FATF</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/></svg>Tus datos, en tu infraestructura</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Decisiones explicables (XAI)</li>
-        </ul>
-        <div class="stats" data-reveal style="--d:.24s">
-          <div class="stat"><div class="num"><span data-count="35" data-pre="−" data-suf="%">−35%</span></div><div class="lbl">Falsos positivos</div></div>
-          <div class="stat"><div class="num"><span data-count="50" data-pre="+" data-suf="%">+50%</span></div><div class="lbl">Velocidad de análisis</div></div>
-          <div class="stat"><div class="num"><span data-count="100" data-suf="%">100%</span></div><div class="lbl">Alertas explicables</div></div>
-        </div>
-      </div>
+<!-- HERO -->
+<section id="inicio" style="padding: clamp(48px, 6vw, 88px) clamp(16px, 5vw, 64px) 40px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 48px 56px">
+<div style="flex: 1 1 420px; min-width: 0">
+<div style="display: inline-flex; align-items: center; gap: 10px; background: #E3EEFF; color: #1E4FBF; font-size: 13px; font-weight: 700; padding: 8px 14px; border-radius: 999px">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #0FA39A"></span>Soluciones para el Encargado de Prevención y el Oficial de Cumplimiento</div>
+<h1 style="margin: 20px 0 0; font-size: clamp(2.3rem, 4.6vw, 3.6rem); font-weight: 800; line-height: 1.08; color: #0A2463; letter-spacing: -0.02em">Prevenga <span style="color: #1E5BD8">lavado, fraude</span> y delitos económicos con un modelo que puede demostrar.</h1>
+<div style="width: 64px; height: 4px; background: #0FA39A; border-radius: 4px; margin: 24px 0"></div>
+<p style="margin: 0; max-width: 580px; font-size: 1.1rem; line-height: 1.75; color: #3B4A63">Amlia ordena su gestión de riesgos, recibe denuncias, evalúa a sus contrapartes y detecta lavado de activos y fraude con IA, como evidencia de su Modelo de Prevención de Delitos según la Ley 20.393 y la Ley de Delitos Económicos, y apoya al Oficial de Cumplimiento en las obligaciones de la Ley 19.913 ante la UAF. Y lo acompañamos con adecuación, asesoría y automatización.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px">
+<a href="#contacto" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; background: #1E5BD8; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700; border-radius: 12px">Solicitar diagnóstico de su MPD</a>
+<a href="#soluciones" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; background: #FFFFFF; border: 1.5px solid #B9CBEA; color: #0A2463; text-decoration: none; font-size: 15px; font-weight: 700; border-radius: 12px">Ver soluciones</a>
+</div>
+</div>
 
-      <div class="mock" data-reveal="left" style="--d:.1s">
-        <div class="mock-title"><span class="ic sm"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>Vista de la plataforma</div>
-        <div class="panel" role="img" aria-label="Maqueta del panel de monitoreo AML de Amlia">
-          <div class="panel-side">
-            <div class="pb">Amlia</div>
-            <span>Inicio</span><span class="on">Monitoreo</span><span>Alertas</span><span>Investigación</span><span>Evidencia</span><span>Auditoría</span>
-          </div>
-          <div class="panel-main">
-            <h3>Monitoreo AML</h3>
-            <div class="sub">Alertas priorizadas por tipología</div>
-            <div class="alert-row"><b>Structuring (smurfing)</b><span class="chip red">Alto</span></div>
-            <div class="alert-row"><b>Layering fan-out</b><span class="chip orange">Medio</span></div>
-            <div class="alert-row"><b>Trade-based ML</b><span class="chip orange">Medio</span></div>
-            <div class="alert-row"><b>Cuentas mula</b><span class="chip red">Alto</span></div>
-            <div class="engine-grid">
-              <div><i></i>Secuencias</div><div><i></i>Redes</div><div><i></i>Tipologías</div><div><i></i>Velocidad</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- Vista de la plataforma -->
+<div style="flex: 1 1 520px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px">
+<div style="width: 40px; height: 40px; border-radius: 50%; background: #1E5BD8; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></div>
+<div style="font-size: 20px; font-weight: 800; color: #0A2463">Vista de la plataforma</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(10,36,99,0.10)">
+<div style="flex: 1 1 150px; background: #0A1F44; padding: 18px 14px; display: flex; flex-direction: column; gap: 4px">
+<div style="color: #FFFFFF; font-weight: 800; font-size: 17px; margin-bottom: 12px; padding: 0 8px">Amlia</div>
+<div style="color: #B8C6E0; font-size: 13px; padding: 7px 10px">Riesgos</div>
+<div style="color: #B8C6E0; font-size: 13px; padding: 7px 10px">Controles</div>
+<div style="color: #FFFFFF; font-size: 13px; padding: 7px 10px; background: #1E5BD8; border-radius: 8px; font-weight: 600">Monitoreo AML</div>
+<div style="color: #B8C6E0; font-size: 13px; padding: 7px 10px">Fraude</div>
+<div style="color: #B8C6E0; font-size: 13px; padding: 7px 10px">Debida diligencia</div>
+<div style="color: #B8C6E0; font-size: 13px; padding: 7px 10px">Denuncias</div>
+</div>
+<div style="flex: 999 1 320px; min-width: 0; padding: 20px">
+<div style="font-size: 15px; font-weight: 800; color: #0A2463">Monitoreo AML</div>
+<div style="font-size: 12px; color: #5A6880; margin-bottom: 14px">Prueba sobre el dataset sintético SAML-D</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: 10px">
+<div style="border: 1px solid #DCE5F2; border-radius: 12px; padding: 12px"><div style="font-size: 11px; color: #5A6880">Transacciones analizadas</div><div style="font-size: 20px; font-weight: 800; color: #0A2463">1.425.617</div></div>
+<div style="border: 1px solid #DCE5F2; border-radius: 12px; padding: 12px"><div style="font-size: 11px; color: #5A6880">Cuentas evaluadas</div><div style="font-size: 20px; font-weight: 800; color: #0A2463">101.169</div></div>
+<div style="border: 1px solid #DCE5F2; border-radius: 12px; padding: 12px"><div style="font-size: 11px; color: #5A6880">Lavado detectado (recall)</div><div style="font-size: 20px; font-weight: 800; color: #0B7F4F">98,4%</div></div>
+<div style="border: 1px solid #DCE5F2; border-radius: 12px; padding: 12px"><div style="font-size: 11px; color: #5A6880">Cuentas normales alertadas</div><div style="font-size: 20px; font-weight: 800; color: #0A2463">3,00%</div></div>
+</div>
+<div style="font-size: 13px; font-weight: 700; color: #0A2463; margin: 16px 0 8px">Motores activos</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 8px 10px; background: #F3F6FB; border-radius: 8px"><span style="color: #0A2463; font-weight: 600">Secuencias</span><span style="font-size: 11px; font-weight: 700; color: #0B7F4F; background: #E2F5EA; padding: 2px 8px; border-radius: 999px">Activo</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 8px 10px; background: #F3F6FB; border-radius: 8px"><span style="color: #0A2463; font-weight: 600">Redes</span><span style="font-size: 11px; font-weight: 700; color: #0B7F4F; background: #E2F5EA; padding: 2px 8px; border-radius: 999px">Activo</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 8px 10px; background: #F3F6FB; border-radius: 8px"><span style="color: #0A2463; font-weight: 600">Tipologías</span><span style="font-size: 11px; font-weight: 700; color: #0B7F4F; background: #E2F5EA; padding: 2px 8px; border-radius: 999px">Activo</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 8px 10px; background: #F3F6FB; border-radius: 8px"><span style="color: #0A2463; font-weight: 600">Velocidad</span><span style="font-size: 11px; font-weight: 700; color: #0B7F4F; background: #E2F5EA; padding: 2px 8px; border-radius: 999px">Activo</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <div class="capstrip" data-reveal>
-      <div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><strong>Detección temprana</strong><span>de operaciones sospechosas.</span></div>
-      <div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="3.5" r="1.5"/><circle cx="12" cy="20.5" r="1.5"/><circle cx="3.5" cy="12" r="1.5"/><circle cx="20.5" cy="12" r="1.5"/><path d="M12 5v4.5M12 14.5V19M5 12h4.5M14.5 12H19"/></svg><strong>Monitoreo continuo</strong><span>de clientes, transacciones y contrapartes.</span></div>
-      <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M10 12h5M10 16h5"/></svg><strong>Evidencia trazable</strong><span>por alerta, lista para auditoría.</span></div>
-      <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg><strong>Cumplimiento normativo</strong><span>con UAF, GAFI y estándares internacionales.</span></div>
-    </div>
-  </div>
+<!-- Franja de capacidades -->
+<div style="max-width: 1240px; margin: 48px auto 0; background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; box-shadow: 0 6px 20px rgba(10,36,99,0.06); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr))">
+<div style="padding: 26px 22px; text-align: center; border-right: 1px solid #E6ECF5">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0A2463" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+<div style="font-weight: 800; color: #1E5BD8; margin-top: 8px">Detección temprana</div><div style="font-size: 14px; color: #3B4A63">de operaciones sospechosas.</div></div>
+<div style="padding: 26px 22px; text-align: center; border-right: 1px solid #E6ECF5">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0A2463" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2.5"></circle><circle cx="12" cy="3.5" r="1.5"></circle><circle cx="12" cy="20.5" r="1.5"></circle><circle cx="3.5" cy="12" r="1.5"></circle><circle cx="20.5" cy="12" r="1.5"></circle><path d="M12 5v4.5M12 14.5V19M5 12h4.5M14.5 12H19"></path></svg>
+<div style="font-weight: 800; color: #1E5BD8; margin-top: 8px">Monitoreo continuo</div><div style="font-size: 14px; color: #3B4A63">de clientes, transacciones y contrapartes.</div></div>
+<div style="padding: 26px 22px; text-align: center; border-right: 1px solid #E6ECF5">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0A2463" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"></path><path d="M10 12h5M10 16h5"></path></svg>
+<div style="font-weight: 800; color: #1E5BD8; margin-top: 8px">Evidencia trazable</div><div style="font-size: 14px; color: #3B4A63">por transacción, lista para el ROS.</div></div>
+<div style="padding: 26px 22px; text-align: center">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0A2463" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
+<div style="font-weight: 800; color: #1E5BD8; margin-top: 8px">Cumplimiento normativo</div><div style="font-size: 14px; color: #3B4A63">Ley 19.913, Ley 20.393, Ley 21.595 y UAF.</div></div>
+</div>
 </section>
 
-<!-- ===================== SERVICIOS ===================== -->
-<section class="sec" id="servicios">
-  <div class="container">
-    <div class="sec-head" data-reveal>
-      <div class="sec-title"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9l3-6z"/><path d="M3 9h18M12 21L8 9l4-6 4 6-4 12"/></svg></span><h2>Capacitaciones, asesorías y modelos de IA para PLA/AML</h2></div>
-      <p class="lead">Soluciones integrales que se adaptan a tu institución y a tu regulador, diseñadas para integrarse con tus equipos de ciencia de datos y cumplimiento.</p>
-    </div>
-    <div class="grid cols-4">
-      <article class="card center tint-green" data-reveal style="--d:.04s">
-        <span class="ic lg green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M7 10.5V15c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5v-4.5"/></svg></span>
-        <h3>Capacitaciones in-company</h3>
-        <p>Fundamentos de AML con IA, modelado de riesgo, MLOps y uso de LLMs para investigación, a la medida de tu equipo.</p>
-      </article>
-      <article class="card center tint-blue" data-reveal style="--d:.1s">
-        <span class="ic lg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M7.8 8.4l3 6.4M16.2 8.4l-3 6.4M8 7h8"/></svg></span>
-        <h3>Asesorías especializadas</h3>
-        <p>Diagnóstico de procesos, diseño de estrategia híbrida reglas + ML + grafos y soporte experto en auditorías.</p>
-      </article>
-      <article class="card center tint-purple" data-reveal style="--d:.16s">
-        <span class="ic lg purple"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span>
-        <h3>Modelos de IA</h3>
-        <p>Detección de anomalías, scoring de riesgo, grafos relacionales (GNN / Neo4j) y despliegue en producción.</p>
-      </article>
-      <article class="card center tint-teal" data-reveal style="--d:.22s">
-        <span class="ic lg teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.5"/></svg></span>
-        <h3>MLOps &amp; gobierno</h3>
-        <p>Trazabilidad, auditoría, versionado de datos y modelos para pasar auditorías sin fricción.</p>
-      </article>
-    </div>
-    <div style="margin-top:28px" data-reveal><a href="servicios.html" class="link-accent">Ver todos los servicios <span class="arr">↗</span></a></div>
-  </div>
+<!-- PROBLEMA -->
+<section id="problema" style="padding: clamp(48px, 6vw, 80px) clamp(16px, 5vw, 64px)">
+<div style="max-width: 1240px; margin: 0 auto">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #D64545; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2L12 3z"></path><path d="M12 10v5M12 18v.01"></path></svg></div>
+<h2 style="margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; color: #0A2463; line-height: 1.2">El crimen ya usa IA para lavar activos y cometer fraude</h2>
+</div>
+<p style="margin: 16px 0 0; max-width: 860px; font-size: 1.05rem; line-height: 1.8">Quien lava activos o defrauda conoce los controles y los umbrales de los sistemas vigentes, y hoy usa inteligencia artificial para crear patrones nuevos que los eluden. Al mismo tiempo, la Ley de Delitos Económicos amplió los delitos por los que responde la empresa. Ya no basta con tener un modelo de prevención: hay que demostrar que funciona.</p>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; margin-top: 28px">
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; display: flex; gap: 16px; align-items: flex-start">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #1E5BD8; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M19 10v9M9 10v9M15 10v9M3 21h18"></path></svg></div>
+<div><div style="font-size: 18px; font-weight: 800; color: #0A2463">La banca usa IA para detectar</div><div style="font-size: 15px; margin-top: 4px">Modelos que identifican patrones, anomalías y redes para fortalecer el cumplimiento.</div></div>
+</div>
+<div style="background: #FFF5F5; border: 1px solid #F3CFCF; border-radius: 16px; padding: 24px; display: flex; gap: 16px; align-items: flex-start">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #D64545; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><path d="M3 3l18 18"></path></svg></div>
+<div><div style="font-size: 18px; font-weight: 800; color: #A12B2B">El crimen organizado usa IA para evadir</div><div style="font-size: 15px; margin-top: 4px">Suplantación, cuentas mula y patrones nuevos, diseñados para eludir los controles actuales.</div></div>
+</div>
+</div>
+
+<h3 style="margin: 44px 0 16px; font-size: 1.35rem; font-weight: 800; color: #0A2463">Mientras tanto, su área de cumplimiento paga el costo</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; text-align: center">
+<div style="font-size: 2.2rem; font-weight: 800; color: #C23535; line-height: 1">~90–95%</div>
+<div style="font-weight: 700; color: #0A2463; margin-top: 8px">Falsos positivos</div>
+<div style="font-size: 14px; margin-top: 6px">de las alertas de los motores de reglas terminan siendo irrelevantes, según cifras habituales de la industria AML.</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; text-align: center">
+<div style="font-size: 2.2rem; font-weight: 800; color: #C23535; line-height: 1">La mayoría</div>
+<div style="font-weight: 700; color: #0A2463; margin-top: 8px">del tiempo del analista</div>
+<div style="font-size: 14px; margin-top: 6px">se va en cerrar alertas sin sustancia, en vez de investigar los casos que sí importan.</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; text-align: center">
+<div style="font-size: 2.2rem; font-weight: 800; color: #C23535; line-height: 1">Un solo caso</div>
+<div style="font-weight: 700; color: #0A2463; margin-top: 8px">no detectado</div>
+<div style="font-size: 14px; margin-top: 6px">puede comprometer la responsabilidad penal de la empresa, con sanciones y daño reputacional.</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px">
+<span style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 999px; padding: 8px 16px; font-size: 14px"><strong style="color: #0A2463">Reglas estáticas:</strong> no evolucionan</span>
+<span style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 999px; padding: 8px 16px; font-size: 14px"><strong style="color: #0A2463">Umbrales fijos:</strong> fáciles de saltar</span>
+<span style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 999px; padding: 8px 16px; font-size: 14px"><strong style="color: #0A2463">Reactivas:</strong> actúan después del hecho</span>
+<span style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 999px; padding: 8px 16px; font-size: 14px"><strong style="color: #0A2463">Programación manual:</strong> cada tipología nueva toma meses</span>
+</div>
+</div>
 </section>
 
-<!-- ===================== CASOS DE USO ===================== -->
-<section class="sec alt" id="casos">
-  <div class="container">
-    <div class="sec-head" data-reveal>
-      <div class="sec-title"><span class="ic teal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span><h2>Aplicaciones concretas en producción</h2></div>
-      <p class="lead">Tipologías de lavado que detectamos con alta precisión, combinando reglas, aprendizaje automático y análisis de grafos.</p>
-    </div>
-    <div class="grid cols-3">
-      <article class="card caso" data-reveal style="--d:.04s"><div class="caso-top"><span class="ic sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V14M9 20V10M14 20V12M19 20V8"/></svg></span><span class="chip">Structuring</span></div><h3>Smurfing</h3><p>Detección de depósitos fraccionados que convergen temporalmente para evadir umbrales de reporte.</p></article>
-      <article class="card caso" data-reveal style="--d:.08s"><div class="caso-top"><span class="ic sm purple"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><circle cx="4" cy="5" r="1.6"/><circle cx="20" cy="5" r="1.6"/><circle cx="4" cy="19" r="1.6"/><circle cx="20" cy="19" r="1.6"/><path d="M5.3 6.2l5.3 4.6M18.7 6.2l-5.3 4.6M5.3 17.8l5.3-4.6M18.7 17.8l-5.3-4.6"/></svg></span><span class="chip purple">Layering</span></div><h3>Fan-out / Fan-in</h3><p>Cadenas complejas entre cuentas puente y jurisdicciones de riesgo que dispersan y reagrupan fondos.</p></article>
-      <article class="card caso" data-reveal style="--d:.12s"><div class="caso-top"><span class="ic sm teal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></span><span class="chip teal">TBML</span></div><h3>Comercio exterior</h3><p>Sobre y subfacturación, y patrones atípicos en pagos internacionales y operaciones de comercio.</p></article>
-      <article class="card caso" data-reveal style="--d:.16s"><div class="caso-top"><span class="ic sm orange"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></span><span class="chip orange">Mulas</span></div><h3>Cuentas mula</h3><p>Actividad anómala en cuentas nuevas con alta intermediación y rotación rápida de fondos.</p></article>
-      <article class="card caso" data-reveal style="--d:.2s"><div class="caso-top"><span class="ic sm green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span><span class="chip green">Cripto</span></div><h3>On / off-ramp</h3><p>Rampas fiat-cripto no habituales, con KYC reforzado y trazabilidad de origen y destino.</p></article>
-      <article class="card caso" data-reveal style="--d:.24s"><div class="caso-top"><span class="ic sm red"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span><span class="chip red">Interno</span></div><h3>Fraude / colusión</h3><p>Relaciones ocultas y accesos anómalos correlacionados entre personas y operaciones internas.</p></article>
-    </div>
-  </div>
+<!-- SOLUCIONES -->
+<section id="soluciones" style="padding: clamp(48px, 6vw, 80px) clamp(16px, 5vw, 64px); background: #FFFFFF; border-top: 1px solid #DCE5F2; border-bottom: 1px solid #DCE5F2">
+<div style="max-width: 1240px; margin: 0 auto">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #1E5BD8; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></div>
+<h2 style="margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; color: #0A2463; line-height: 1.2">¿Qué necesita resolver?</h2>
+</div>
+<p style="margin: 16px 0 0; max-width: 860px; font-size: 1.05rem; line-height: 1.8">Cada solución parte de un problema concreto del Encargado de Prevención o del Oficial de Cumplimiento. Puede contratarlas por separado o como una sola plataforma que sostiene su Modelo de Prevención de Delitos.</p>
+
+<h3 style="margin: 36px 0 0; font-size: 1.35rem; font-weight: 800; color: #0A2463">Plataforma Amlia</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; margin-top: 16px">
+
+<div style="background: #F3F6FB; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #6A44D4; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 4V3h6v1"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+<span style="font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°1 y N°3</span>
+</div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"Mi matriz de riesgos vive en planillas y nadie la actualiza."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Gestión de riesgos</h4>
+<p style="margin: 0; font-size: 15px">Riesgos, controles y planes de acción en un solo lugar, con indicadores para el directorio.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #6A44D4; margin-top: 8px; flex-shrink: 0"></span>Riesgos por proceso y fuente, con valor inherente y residual</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #6A44D4; margin-top: 8px; flex-shrink: 0"></span>Catálogo de controles y medición de su efectividad</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #6A44D4; margin-top: 8px; flex-shrink: 0"></span>Planes de acción, KPIs/KRIs y dashboard ejecutivo</div>
+</div>
+<a href="riesgos.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver solución →</a>
+</div>
+
+<div style="background: #F3F6FB; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #0E8C84; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1.1-4.6A8 8 0 1121 12z"></path><path d="M12 8v4M12 15v.01"></path></svg></div>
+<span style="font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°2</span>
+</div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"La ley exige un canal seguro de denuncias y no tenemos uno confiable."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Canal de denuncias</h4>
+<p style="margin: 0; font-size: 15px">Un canal confidencial para trabajadores y terceros, con gestión de cada caso.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0E8C84; margin-top: 8px; flex-shrink: 0"></span>Reserva de identidad del denunciante</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0E8C84; margin-top: 8px; flex-shrink: 0"></span>Seguimiento de cada denuncia hasta su cierre</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0E8C84; margin-top: 8px; flex-shrink: 0"></span>Registro para la investigación y las sanciones internas</div>
+</div>
+<a href="denuncias.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver solución →</a>
+</div>
+
+<div style="background: #F3F6FB; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #13945B; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8" r="4"></circle><path d="M3 21c0-3.9 3.1-7 7-7 1.5 0 2.9.5 4 1.2"></path><path d="M15 19l2 2 4-4"></path></svg></div>
+<span style="font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°2 · UAF</span>
+</div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"No tengo certeza de quiénes son mis clientes, proveedores y socios."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Debida diligencia</h4>
+<p style="margin: 0; font-size: 15px">Conozca a sus contrapartes antes de operar con ellas y mantenga su perfil al día.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #13945B; margin-top: 8px; flex-shrink: 0"></span>Clientes, proveedores y terceros evaluados por riesgo</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #13945B; margin-top: 8px; flex-shrink: 0"></span>Cruce con listas restrictivas y PEP</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #13945B; margin-top: 8px; flex-shrink: 0"></span>Identificación del beneficiario final y revisión periódica</div>
+</div>
+<a href="debida-diligencia.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver solución →</a>
+</div>
+
+<div style="background: #F3F6FB; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #1E5BD8; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path><path d="M8 11h6M11 8v6"></path></svg></div>
+<span style="font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°2 · Ley 19.913</span>
+</div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"Mis reglas generan miles de alertas y casi ninguna sirve."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Monitoreo de operaciones sospechosas</h4>
+<p style="margin: 0; font-size: 15px">Cuatro motores de IA contra el lavado de activos, que complementan sus reglas.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1E5BD8; margin-top: 8px; flex-shrink: 0"></span>Secuencias, redes, tipologías y velocidad</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1E5BD8; margin-top: 8px; flex-shrink: 0"></span>Alertas con score de confianza y explicación</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1E5BD8; margin-top: 8px; flex-shrink: 0"></span>Evidencia como insumo para el ROS a la UAF</div>
+</div>
+<a href="aml.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver solución →</a>
+</div>
+
+<div style="background: #F3F6FB; border: 1px solid #DCE5F2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #C25F0A; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M3 10h18"></path><path d="M14 15h3"></path></svg></div>
+<span style="font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°2</span>
+</div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"Nos enteramos del fraude cuando ya se perdió el dinero."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Detección de fraude</h4>
+<p style="margin: 0; font-size: 15px">Motores de IA que detectan fraude interno y externo a tiempo.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #C25F0A; margin-top: 8px; flex-shrink: 0"></span>Suplantación, cuentas mula y toma de cuentas</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #C25F0A; margin-top: 8px; flex-shrink: 0"></span>Proveedores ficticios, pagos duplicados y gastos atípicos</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #C25F0A; margin-top: 8px; flex-shrink: 0"></span>Relaciones ocultas entre colaboradores, proveedores y clientes</div>
+</div>
+<a href="fraude.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver solución →</a>
+</div>
+
+</div>
+
+<h3 id="servicios" style="margin: 52px 0 0; font-size: 1.35rem; font-weight: 800; color: #0A2463">Servicios de acompañamiento</h3>
+<p style="margin: 8px 0 0; max-width: 860px; font-size: 15px">La tecnología rinde cuando el modelo está bien diseñado. Por eso también lo acompañamos.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; margin-top: 16px">
+
+<div style="background: #EAF1FD; border: 1px solid #C3D5F5; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #0A2463; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"></path><path d="M10 13l2 2 3-4"></path></svg></div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"Mi Modelo de Prevención no está al día con la Ley 21.595."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Adecuación del MPD</h4>
+<p style="margin: 0; font-size: 15px">Revisamos y actualizamos su modelo frente al artículo 4 de la Ley 20.393.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Diagnóstico de brechas del modelo actual</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Actualización de matriz, protocolos y políticas</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Preparación para la evaluación independiente</div>
+</div>
+<a href="asesoria.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver servicio →</a>
+</div>
+
+<div style="background: #EAF1FD; border: 1px solid #C3D5F5; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #0A2463; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><path d="M16 5.5a3 3 0 010 5.5M18 14.5c1.8.9 3 2.9 3 5.5"></path></svg></div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"Necesito apoyo experto para decidir en cumplimiento."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Asesoría</h4>
+<p style="margin: 0; font-size: 15px">Acompañamiento continuo al Encargado de Prevención y a su equipo.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Apoyo en investigaciones y casos complejos</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Capacitación de colaboradores</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Revisión de tipologías y señales de alerta</div>
+</div>
+<a href="asesoria.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver servicio →</a>
+</div>
+
+<div style="background: #EAF1FD; border: 1px solid #C3D5F5; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #0A2463; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg></div>
+<div style="font-size: 15px; font-style: italic; color: #5A6880">"Mi equipo pierde horas en reportes y tareas manuales."</div>
+<h4 style="margin: 0; font-size: 19px; font-weight: 800; color: #0A2463">Automatización</h4>
+<p style="margin: 0; font-size: 15px">Automatizamos con IA los procesos repetitivos de cumplimiento.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Reportes al directorio y al regulador</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Integración de datos por archivo o API</div>
+<div style="display: flex; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0A2463; margin-top: 8px; flex-shrink: 0"></span>Agentes de IA para tareas de revisión y seguimiento</div>
+</div>
+<a href="asesoria.html" style="margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 700; color: #1E5BD8; text-decoration: none">Ver servicio →</a>
+</div>
+
+</div>
+</div>
 </section>
 
-<!-- ===================== METODOLOGÍA ===================== -->
-<section class="sec" id="metodologia">
-  <div class="container">
-    <div class="sec-head" data-reveal>
-      <div class="sec-title"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span><h2>Enfoque iterativo, seguro y auditable</h2></div>
-      <p class="lead">Cinco etapas para llevar tu proyecto de IA a producción, con foco en explicabilidad y cumplimiento en cada paso.</p>
-    </div>
-    <div class="steps">
-      <div class="step" data-reveal style="--d:.04s"><div class="chev"><span class="dot">1</span></div><div class="body"><h4>Descubrimiento</h4><p>Objetivos, datos y KPIs</p></div></div>
-      <div class="step" data-reveal style="--d:.1s"><div class="chev"><span class="dot">2</span></div><div class="body"><h4>Diseño</h4><p>Arquitectura y features</p></div></div>
-      <div class="step" data-reveal style="--d:.16s"><div class="chev"><span class="dot">3</span></div><div class="body"><h4>PoC / PoV</h4><p>Validación con datos reales</p></div></div>
-      <div class="step" data-reveal style="--d:.22s"><div class="chev"><span class="dot">4</span></div><div class="body"><h4>Despliegue</h4><p>Integración core / alertas</p></div></div>
-      <div class="step" data-reveal style="--d:.28s"><div class="chev"><span class="dot">5</span></div><div class="body"><h4>MLOps</h4><p>Monitoreo y auditoría</p></div></div>
-    </div>
-  </div>
+<!-- MARCO LEGAL -->
+<section id="marco-legal" style="padding: clamp(48px, 6vw, 80px) clamp(16px, 5vw, 64px)">
+<div style="max-width: 1240px; margin: 0 auto">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #0A2463; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 21h14"></path><path d="M4 8h16"></path><path d="M4 8l-2.5 6a2.5 2.5 0 005 0L4 8zM20 8l-2.5 6a2.5 2.5 0 005 0L20 8z"></path></svg></div>
+<h2 style="margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; color: #0A2463; line-height: 1.2">Pensado para la Ley 19.913, la Ley 20.393 y la Ley de Delitos Económicos</h2>
+</div>
+<p style="margin: 16px 0 0; max-width: 860px; font-size: 1.05rem; line-height: 1.8">Desde la Ley 21.595, la empresa responde penalmente por un catálogo amplio de delitos económicos. Para eximirse debe contar con un Modelo de Prevención de Delitos efectivamente implementado. Amlia apoya al Encargado de Prevención en los cuatro elementos que exige el artículo 4 de la Ley 20.393.</p>
+
+<div style="margin-top: 28px">
+<h3 style="margin: 0 0 16px; font-size: 1.35rem; font-weight: 800; color: #0A2463">Dos marcos legales, dos responsables</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; margin-bottom: 40px">
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Ley 19.913 · UAF</span>
+<div style="font-size: 20px; font-weight: 800; color: #0A2463">Oficial de Cumplimiento</div>
+<div style="font-size: 15px">En los sujetos obligados ante la UAF (bancos, cooperativas, AGF, corredoras, seguros y fintech, entre otros) responde por el sistema de prevención del lavado de activos y del financiamiento del terrorismo.</div>
+<div style="font-size: 14px; border-top: 1px solid #E6ECF5; padding-top: 10px; margin-top: auto"><strong style="color: #1E5BD8">Con Amlia:</strong> monitoreo de operaciones sospechosas, debida diligencia de clientes, listas y PEP, insumo para el ROS y capacitación.</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Ley 20.393 · Ley 21.595</span>
+<div style="font-size: 20px; font-weight: 800; color: #0A2463">Encargado de Prevención de Delitos</div>
+<div style="font-size: 15px">En toda persona jurídica responde por el Modelo de Prevención de Delitos, del que depende la responsabilidad penal de la empresa.</div>
+<div style="font-size: 14px; border-top: 1px solid #E6ECF5; padding-top: 10px; margin-top: auto"><strong style="color: #1E5BD8">Con Amlia:</strong> gestión de riesgos, canal de denuncias, debida diligencia de terceros, detección de fraude, adecuación y asesoría.</div>
+</div>
+</div>
+<p style="margin: -24px 0 40px; font-size: 14px; color: #5A6880">En muchas instituciones ambos roles recaen en la misma persona: Amlia los apoya desde una sola plataforma.</p>
+<h3 style="margin: 0 0 16px; font-size: 1.35rem; font-weight: 800; color: #0A2463">Los cuatro elementos del Modelo de Prevención (art. 4, Ley 20.393)</h3>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 16px; margin-top: 0">
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°1</span>
+<div style="font-size: 18px; font-weight: 800; color: #0A2463">Identificar riesgos</div>
+<div style="font-size: 14px; color: #5A6880">Las actividades y procesos con riesgo de conducta delictiva.</div>
+<div style="font-size: 14px; border-top: 1px solid #E6ECF5; padding-top: 10px; margin-top: auto"><strong style="color: #1E5BD8">Con Amlia:</strong> gestión de riesgos por proceso y fuente, con valor inherente y residual.</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°2</span>
+<div style="font-size: 18px; font-weight: 800; color: #0A2463">Prevenir y detectar</div>
+<div style="font-size: 14px; color: #5A6880">Protocolos, canales seguros de denuncia y sanciones internas.</div>
+<div style="font-size: 14px; border-top: 1px solid #E6ECF5; padding-top: 10px; margin-top: auto"><strong style="color: #1E5BD8">Con Amlia:</strong> canal de denuncias, debida diligencia, controles y motores de lavado y fraude.</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°3</span>
+<div style="font-size: 18px; font-weight: 800; color: #0A2463">Un encargado con medios</div>
+<div style="font-size: 14px; color: #5A6880">Responsables independientes, con facultades y acceso directo a la administración.</div>
+<div style="font-size: 14px; border-top: 1px solid #E6ECF5; padding-top: 10px; margin-top: auto"><strong style="color: #1E5BD8">Con Amlia:</strong> dashboard, KPIs/KRIs y centro de alertas para rendir cuenta al directorio.</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #1E4FBF; background: #E3EEFF; padding: 4px 10px; border-radius: 999px">Art. 4 N°4</span>
+<div style="font-size: 18px; font-weight: 800; color: #0A2463">Evaluación independiente</div>
+<div style="font-size: 14px; color: #5A6880">Evaluaciones periódicas por terceros y mecanismos de mejora.</div>
+<div style="font-size: 14px; border-top: 1px solid #E6ECF5; padding-top: 10px; margin-top: auto"><strong style="color: #1E5BD8">Con Amlia:</strong> planes de acción, historial trazable para el evaluador y servicio de adecuación.</div>
+</div>
+</div>
+
+<h3 style="margin: 48px 0 16px; font-size: 1.35rem; font-weight: 800; color: #0A2463">La IA en todo el ciclo de gestión del riesgo</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 12px">
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 14px; padding: 16px"><div style="font-size: 13px; font-weight: 800; color: #1E5BD8">1 · Identificar</div><div style="font-size: 14px; margin-top: 4px">Riesgos penales propuestos por proceso.</div></div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 14px; padding: 16px"><div style="font-size: 13px; font-weight: 800; color: #1E5BD8">2 · Evaluar</div><div style="font-size: 14px; margin-top: 4px">Probabilidad e impacto según datos reales.</div></div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 14px; padding: 16px"><div style="font-size: 13px; font-weight: 800; color: #1E5BD8">3 · Prevenir</div><div style="font-size: 14px; margin-top: 4px">Riesgos sin control a la vista.</div></div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 14px; padding: 16px"><div style="font-size: 13px; font-weight: 800; color: #1E5BD8">4 · Detectar</div><div style="font-size: 14px; margin-top: 4px">Alertas de lavado y fraude priorizadas.</div></div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 14px; padding: 16px"><div style="font-size: 13px; font-weight: 800; color: #1E5BD8">5 · Investigar</div><div style="font-size: 14px; margin-top: 4px">El caso armado, con su línea de tiempo.</div></div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 14px; padding: 16px"><div style="font-size: 13px; font-weight: 800; color: #1E5BD8">6 · Evidenciar</div><div style="font-size: 14px; margin-top: 4px">Reportes al directorio y al evaluador.</div></div>
+</div>
+<p style="margin: 20px 0 0; max-width: 860px; font-size: 14px; color: #5A6880">Para sujetos obligados, Amlia también apoya la prevención de LA/FT exigida por la Ley 19.913 y la normativa de la UAF. Amlia fortalece la gestión del modelo; no reemplaza el juicio del encargado ni garantiza por sí sola la exención de responsabilidad penal.</p>
+</div>
 </section>
 
-<!-- ===================== PAQUETES ===================== -->
-<section class="sec alt" id="paquetes">
-  <div class="container">
-    <div class="sec-head" data-reveal>
-      <div class="sec-title"><span class="ic green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><h2>Paquetes orientativos, ajustados a tu realidad</h2></div>
-      <p class="lead">Cada propuesta se adapta a tu institución y a tu regulador. Estos valores son una referencia inicial.</p>
-    </div>
-    <div class="grid cols-3" style="padding-top:14px">
-      <article class="card price" data-reveal style="--d:.04s">
-        <div class="tier">Starter</div>
-        <div class="amt">US$ 8k <span>desde</span></div>
-        <div class="desc">Ideal para diagnóstico inicial y hoja de ruta.</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Diagnóstico 3–4 semanas</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Mapa de datos y brechas</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Roadmap y quick wins</li>
-        </ul>
-        <a href="contacto.html" class="btn btn-outline">Solicitar</a>
-      </article>
-      <article class="card price feat" data-reveal style="--d:.1s">
-        <span class="badge-pop">Más popular</span>
-        <div class="tier">Pro</div>
-        <div class="amt">US$ 25k <span>desde</span></div>
-        <div class="desc">PoC supervisado con explicabilidad y reducción de falsos positivos.</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>PoC / PoV supervisado</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Explicabilidad XAI</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Plan de reducción de FPs</li>
-        </ul>
-        <a href="contacto.html" class="btn btn-primary">Agenda una demo</a>
-      </article>
-      <article class="card price" data-reveal style="--d:.16s">
-        <div class="tier">Enterprise</div>
-        <div class="amt">A medida</div>
-        <div class="desc">Modelos en producción con MLOps y soporte a auditorías.</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Modelos en producción</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>MLOps y monitoreo</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Soporte a auditorías</li>
-        </ul>
-        <a href="contacto.html" class="btn btn-outline">Conversemos</a>
-      </article>
-    </div>
-  </div>
+<!-- SEGURIDAD -->
+<section id="seguridad" style="padding: clamp(48px, 6vw, 80px) clamp(16px, 5vw, 64px); background: #FFFFFF; border-top: 1px solid #DCE5F2; border-bottom: 1px solid #DCE5F2">
+<div style="max-width: 1240px; margin: 0 auto">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #1E5BD8; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 018 0v4"></path></svg></div>
+<h2 style="margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; color: #0A2463; line-height: 1.2">Seguridad y auditoría, pensadas para el regulador</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 14px; margin-top: 28px">
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Carga y descarga segura</div><div style="font-size: 14px">Cifrado AES-256 y TLS 1.3 en todo el tránsito.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Hash de integridad</div><div style="font-size: 14px">Ningún archivo se altera entre el envío y la recepción.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Resguardo de identidad</div><div style="font-size: 14px">Protección de los datos de sus clientes en cada etapa.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Accesos controlados</div><div style="font-size: 14px">Perfiles separados según rol y nivel de autorización.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Registros para auditoría</div><div style="font-size: 14px">Trazabilidad completa, desde la carga hasta la alerta.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Logs y bitácora</div><div style="font-size: 14px">Registro permanente de eventos y accesos al sistema.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Sin sesgos en la evaluación</div><div style="font-size: 14px">Variables sensibles fuera del modelo; decisiones explicables.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Ambiente redundante y escalable</div><div style="font-size: 14px">Infraestructura en la nube para la continuidad operativa.</div></div></div>
+<div style="display: flex; gap: 14px; align-items: flex-start; background: #F3F6FB; border-radius: 14px; padding: 18px"><div style="width: 12px; height: 12px; border-radius: 50%; background: #0E8C84; margin-top: 6px; flex-shrink: 0"></div><div><div style="font-weight: 800; color: #0A2463">Monitoreo de procesos</div><div style="font-size: 14px">Vigilancia constante del servicio y de los modelos.</div></div></div>
+</div>
+</div>
 </section>
 
-<!-- ===================== FAQ ===================== -->
-<section class="sec" id="faq">
-  <div class="container" style="max-width:880px">
-    <div class="sec-head" data-reveal>
-      <div class="sec-title"><span class="ic purple"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.2-1.5 2.5M12 17v.01"/></svg></span><h2>Preguntas frecuentes</h2></div>
-    </div>
-    <div data-reveal>
-      <div class="faq"><button class="faq-q">¿Cumplen con GAFI/FATF y la normativa local?<span class="pm" aria-hidden="true"></span></button><div class="faq-a"><div>Sí. Diseñamos procesos y evidencias en línea con las 40 Recomendaciones, ROS, segmentación de riesgo y gobierno de modelos, adaptados a tu regulador local.</div></div></div>
-      <div class="faq"><button class="faq-q">¿Cómo aseguran la explicabilidad?<span class="pm" aria-hidden="true"></span></button><div class="faq-a"><div>Usamos trazas de decisión, SHAP/LIME, subgrafos y reportes técnicos legibles por auditoría interna y por el regulador.</div></div></div>
-      <div class="faq"><button class="faq-q">¿Qué datos necesitan para comenzar?<span class="pm" aria-hidden="true"></span></button><div class="faq-a"><div>Transacciones, clientes, KYC, listas y, si es posible, relaciones como beneficiario final, dispositivos, IP y ubicación.</div></div></div>
-      <div class="faq"><button class="faq-q">¿Cuánto tarda un PoC?<span class="pm" aria-hidden="true"></span></button><div class="faq-a"><div>Típicamente entre 6 y 10 semanas, según la calidad de los datos y el alcance acordado.</div></div></div>
-    </div>
-  </div>
+<!-- QUIÉNES SOMOS -->
+<section id="nosotros" style="padding: clamp(48px, 6vw, 80px) clamp(16px, 5vw, 64px)">
+<div style="max-width: 1240px; margin: 0 auto">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #1E5BD8; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 00-3.5 10.9V16h7v-2.1A6 6 0 0012 3z"></path></svg></div>
+<h2 style="margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; color: #0A2463; line-height: 1.2">Una empresa de cumplimiento, no solo de tecnología</h2>
+</div>
+<p style="margin: 16px 0 0; max-width: 860px; font-size: 1.05rem; line-height: 1.8">Amlia SpA se dedica a la investigación, el desarrollo y la innovación de tecnología con inteligencia artificial para prevenir lavado de activos, fraude y delitos económicos. Un socio que investiga de forma permanente, al ritmo en que cambia el crimen organizado.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; margin-top: 24px">
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 22px"><div style="font-weight: 800; color: #1E5BD8">Inteligencia Artificial</div><div style="font-size: 15px; margin-top: 4px">Data Science · ML Engineer · MLOps · QA ML</div></div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 22px"><div style="font-weight: 800; color: #1E5BD8">Asesores especializados</div><div style="font-size: 15px; margin-top: 4px">Abogados · Auditores · Oficiales de Cumplimiento</div></div>
+<div style="background: #FFFFFF; border: 1px solid #DCE5F2; border-radius: 16px; padding: 22px"><div style="font-weight: 800; color: #1E5BD8">Tecnología</div><div style="font-size: 15px; margin-top: 4px">Arquitectos · Ciberseguridad · Riesgo tecnológico</div></div>
+</div>
+</div>
 </section>
 
-<!-- ===================== CTA ===================== -->
-<section class="sec" id="contacto" style="padding-top:0">
-  <div class="container">
-    <div class="cta-band" data-reveal>
-      <span class="eyebrow"><span class="dot"></span>Conversemos</span>
-      <h2 class="display-l">Hablemos de tu <span class="accent-t">desafío AML</span></h2>
-      <p class="lead">Cuéntanos tu situación y armamos una demo con tus propios datos.</p>
-      <div class="cta-actions">
-        <a href="contacto.html" class="btn btn-white">Agenda una demo →</a>
-        <a href="https://wa.me/56961704164" class="btn btn-ghost-light" target="_blank" rel="noopener">WhatsApp directo</a>
-      </div>
-    </div>
-  </div>
+<!-- CIERRE -->
+<section id="contacto" style="padding: 0 clamp(16px, 5vw, 64px) clamp(56px, 7vw, 96px)">
+<div style="max-width: 1240px; margin: 0 auto; background: #0A2463; border-radius: 24px; padding: clamp(28px, 5vw, 56px); display: flex; flex-wrap: wrap; align-items: center; gap: 36px 56px">
+<div style="flex: 1.2 1 360px; min-width: 0">
+<div style="display: inline-flex; background: #17357F; color: #BFDcFF; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 999px">Ver · Validar · Decidir</div>
+<h2 style="margin: 16px 0 0; font-size: clamp(1.9rem, 3.6vw, 2.9rem); font-weight: 800; line-height: 1.12; color: #FFFFFF">Conversemos sobre su <span style="color: #7FE0D6">modelo de prevención</span></h2>
+<p style="margin: 16px 0 0; max-width: 560px; font-size: 1.05rem; line-height: 1.75; color: #D5DEF0">Cuéntenos qué necesita resolver. Podemos partir por un diagnóstico de su Modelo de Prevención de Delitos o por una demo de la solución que le interesa.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px">
+<a href="contacto.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; background: #FFFFFF; color: #0A2463; text-decoration: none; font-size: 15px; font-weight: 800; border-radius: 12px">Solicitar diagnóstico del MPD</a>
+<a href="contacto.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; background: transparent; border: 1.5px solid #7FA6E8; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700; border-radius: 12px">Agendar una demo</a>
+</div>
+<div style="margin-top: 16px; font-size: 15px; color: #D5DEF0; display: flex; flex-wrap: wrap; gap: 4px 18px"><a href="contacto.html" style="color: #FFFFFF; font-weight: 600; display: inline-flex; align-items: center; min-height: 44px">info@amlia.cl</a><a href="https://wa.me/56961784164" style="color: #FFFFFF; font-weight: 600; display: inline-flex; align-items: center; min-height: 44px">+56 9 6178 4164</a></div>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 18px; padding: 24px">
+<div style="font-weight: 800; color: #0A2463; margin-bottom: 8px">Cómo empezamos</div>
+<div style="display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E6ECF5"><span style="width: 28px; height: 28px; border-radius: 50%; background: #1E5BD8; color: #FFFFFF; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0">1</span><div><div style="font-weight: 700; color: #0A2463">Conversación inicial</div><div style="font-size: 14px">Conocemos su organización y lo que necesita resolver.</div></div></div>
+<div style="display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E6ECF5"><span style="width: 28px; height: 28px; border-radius: 50%; background: #0E8C84; color: #FFFFFF; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0">2</span><div><div style="font-weight: 700; color: #0A2463">Diagnóstico o demo</div><div style="font-size: 14px">Revisamos su modelo o le mostramos la solución funcionando.</div></div></div>
+<div style="display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E6ECF5"><span style="width: 28px; height: 28px; border-radius: 50%; background: #13945B; color: #FFFFFF; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0">3</span><div><div style="font-weight: 700; color: #0A2463">Propuesta</div><div style="font-size: 14px">Alcance, integración y plazos, según su prioridad.</div></div></div>
+<div style="display: flex; gap: 12px; padding: 12px 0 0"><span style="width: 28px; height: 28px; border-radius: 50%; background: #6A44D4; color: #FFFFFF; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0">4</span><div><div style="font-weight: 700; color: #0A2463">Puesta en marcha</div><div style="font-size: 14px">Implementación con el acompañamiento de nuestro equipo.</div></div></div>
+</div>
+</div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div>
-        <a href="index.html" class="brand"><img src="assets/amlia-logo.png" alt="Amlia" width="739" height="246"></a>
-        <p>Sistema inteligente de prevención de lavado de activos y financiamiento del terrorismo para entidades financieras.</p>
-      </div>
-      <div><h5>Producto</h5><ul><li><a href="servicios.html">Servicios</a></li><li><a href="casos-de-uso.html">Casos de uso</a></li><li><a href="metodologia.html">Metodología</a></li><li><a href="paquetes.html">Paquetes</a></li></ul></div>
-      <div><h5>Empresa</h5><ul><li><a href="contacto.html">Contacto</a></li><li><a href="trabaja-con-nosotros.html">Trabaja con nosotros</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://wa.me/56961704164" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
-      <div><h5>Contacto</h5><ul><li><a href="mailto:info@amlia.cl">info@amlia.cl</a></li><li><a href="https://wa.me/56961704164" target="_blank" rel="noopener">+56 9 6170 4164</a></li><li><a href="https://amlia.cl">amlia.cl</a></li></ul></div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span data-year>2026</span> AMLIA. Todos los derechos reservados.</span>
-      <span>Cumplimiento GAFI / FATF · Solución empresarial</span>
-    </div>
-  </div>
+<!-- PIE -->
+<footer style="background: #FFFFFF; border-top: 1px solid #DCE5F2; padding: 20px clamp(16px, 5vw, 64px)">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px"><img src="img/logo-amlia.png" alt="Amlia" style="height: 46px; width: auto; display: block"><span style="font-size: 13px; color: #5A6880">AMLIA SpA · 2026</span></div>
+<div style="font-size: 14px; font-weight: 700; color: #0A2463">Protegemos su institución, fortalecemos el sistema financiero</div>
+</div>
 </footer>
 
-<a class="wa" href="https://wa.me/56961704164" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3zm4.6-6.2c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg>
-</a>
-
-<script src="site.js"></script>
+<a href="https://wa.me/56961784164" aria-label="Escríbanos por WhatsApp al +56 9 6178 4164" style="position: fixed; right: 20px; bottom: 20px; z-index: 50; width: 60px; height: 60px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(10,36,99,0.25)"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C8.8 3 3 8.6 3 15.6c0 2.5.7 4.8 2 6.8L3.6 29l6.8-1.8c1.7.9 3.6 1.4 5.6 1.4 7.2 0 13-5.6 13-12.6S23.2 3 16 3z" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="round"></path><path d="M11.6 9.6c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.6 7.1 6.3 3.5 1.4 4.2 1.1 5 1 .8-.1 2.5-1 2.8-2 .3-1 .3-1.8.2-2-.1-.2-.4-.3-.8-.5s-2.5-1.2-2.8-1.4c-.4-.1-.6-.2-.9.2-.3.4-1.1 1.4-1.3 1.6-.2.3-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.2-1.1-2.1-2.5-2.3-2.9-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.2-3z" fill="#FFFFFF"></path></svg></a>
+</div>
 </body>
 </html>
