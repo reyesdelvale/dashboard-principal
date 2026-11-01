@@ -1,0 +1,25 @@
+TERRA IMPORT CHILE - SITIO CON IMÁGENES EDITABLES
+
+1. Abra index.html en el navegador.
+2. Las imágenes de cada categoría están en imagenes/equipos/.
+3. Para cambiar una fotografía, reemplace el archivo WEBP manteniendo su nombre.
+4. Cada categoría incluye dos archivos -01 y -02; son dos encuadres ilustrativos de la misma fuente, NO fotografías verificadas de distintos ángulos ni modelos comerciales.
+5. Para añadir más fotos, edite en index.html la propiedad photos de la categoría y agregue rutas a nuevos archivos.
+6. Al hacer clic sobre la foto grande de la ficha se abre en una pestaña nueva. Las miniaturas cambian la foto principal.
+7. La resolución del archivo no equivale a detalle fotográfico real; reemplace con fotografías originales de al menos 1200px de ancho para calidad de venta.
+8. El formulario es una demostración; no envía información.
+
+
+FICHAS TECNICAS DEMOSTRATIVAS
+Las seis categorias ahora muestran valores ficticios, plausibles y editables.
+Para cambiarlos, abre index.html con un editor de texto y busca "const specData=".
+Cada bloque corresponde, en orden, a: excavadoras, cargadores frontales,
+retroexcavadoras, motoniveladoras, rodillos compactadores y manipuladores telescopicos.
+IMPORTANTE: no publicar estos valores como especificaciones reales de venta.
+
+ACTUALIZACIÓN: cada ficha incluye marca ficticia, horas de uso, combustible, motor y mantenciones demostrativas. Editar const specData en index.html. No utilizar como información comercial real.
+
+
+ACTUALIZACIÓN DE FICHAS: En EQUIPOS, cada tarjeta ahora muestra marca/modelo, horómetro, combustible, motor y próxima mantención. Al abrir una tarjeta se muestran todas las características, incluidas las mantenciones. Para cambiar valores, abre index.html y busca «const specData». Todos los valores son ficticios.
+
+TESTIMONIOS: en index.html busca "const testimonials". Los seis relatos, nombres, empresas, marcas y modelos son ficticios y deben sustituirse por testimonios reales autorizados antes de publicar.

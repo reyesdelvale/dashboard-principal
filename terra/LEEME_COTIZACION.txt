@@ -1,0 +1,1 @@
+Formulario de Cotización: incluye Empresa, RUT, Zona y Región. Los datos se pueden editar en index.html. El formulario sigue siendo demostrativo y no envía información a un servidor.

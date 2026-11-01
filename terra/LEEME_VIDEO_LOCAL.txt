@@ -1,0 +1,7 @@
+VIDEOS LOCALES - TERRA IMPORT CHILE
+
+Los videos MP4 en la carpeta videos/ son demostraciones visuales creadas a partir de fotografías estáticas de cada categoría. NO muestran maquinaria real en movimiento.
+
+Para usar grabaciones reales, reemplaza cada MP4 manteniendo su nombre, o cambia las rutas en const videosEquipos dentro de index.html.
+
+Abre index.html directamente en tu navegador. El reproductor funciona sin YouTube ni Internet. Mantén las carpetas junto al HTML.

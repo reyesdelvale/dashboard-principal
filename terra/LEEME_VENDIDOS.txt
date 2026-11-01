@@ -1,0 +1,7 @@
+DOS EQUIPOS VENDIDOS (DEMO)
+
+En index.html busca: const equiposVendidos=[1,3];
+Los índices empiezan en cero: 0 Excavadoras, 1 Cargadores, 2 Retroexcavadoras, 3 Motoniveladoras, 4 Rodillos, 5 Manipuladores.
+La etiqueta roja VENDIDO se dibuja sobre la foto sin modificar los archivos de imagen.
+Cambia los índices para seleccionar otros equipos, o usa [] para ninguno.
+Nota: las máquinas y sus datos siguen siendo demostrativos.

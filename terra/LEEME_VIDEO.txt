@@ -1,0 +1,7 @@
+VIDEO DEMOSTRATIVO EN FICHAS DE EQUIPOS
+
+El video se encuentra debajo de las fotografias y encima del testimonio en cada ficha.
+Es un video externo de YouTube, por lo que requiere conexion a Internet.
+Para cambiarlo, abre index.html, busca const videosEquipos y reemplaza los ID de YouTube por los de tus propios videos.
+El video es ilustrativo y no demuestra el estado ni la identidad del equipo ofertado.
+El resto del sitio, imagenes editables y etiquetas VENDIDO se conserva.
